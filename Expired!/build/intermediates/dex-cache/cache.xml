@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\4ace659d649eb10c6becf5cbb7f89e55afd90077\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="e79aa3d9a16f8c9f16377c0608de70a8f31e5d80">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1aa50b39f078c6efae57c4a8155cafc6b0580c13\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\55310b320c9d283b2e1c8e7bc4c184f4f28ae900\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="2a53c4f3518116b8c6aee0e477233f0f7da8616f">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8134118a656a354a8dda25c9257ad87f9ee0a580\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\12c977d3fd9d38f45b7676dd5f1a1d0478a88559\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="ca3c7aa31e2726a400a6e552b93cb9f63c9a1e6d">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_98d6444bf551b803dce293736a7dc8b533003afa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\c0ee405ba6a421dac942d0421691941969a6d0cd\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_669d886450c3af1af23385d13f7df4752ace8367\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\068c08d07dabc62ebfd358eab660530f524eb3dd\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="d38084015027549951cbaea5d5f6fb795cc81151">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1938562d76e25036197190dae80f7a59d170ab7b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\4f7d3c5ea058a581122e7c57e9f4e3f9066298a0\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="30103d98fa5ed824b54af839c85e2111f9bde8ec">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c6b9c2915e307ab52d889028255b0276216a387e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\f2fd26263827296c76c852a5cb1d82479c98ec32\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="aee64634871d88a419d59eb743c1258a60f19700">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f5aaafceef73a1816962d68c47ec5f2426587072\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\56fc157081354d4639f95fcd65557028e349f974\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="b266c8faa5af72e579b9da36ef35053ffed6ac64">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2f403215cc926dc9e5ba7c7c19da30fb97ad2c8b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\MyFirstApp\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_3b6a5b6d241761fcdff07eff89eb82356089304d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\4662710c37855a601d1ef18e2b7b920901d19c6d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="0a0ef86b7fa568a52bf6214a0326ca1f1d618da7">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2360a075b2d623760cfe55e2ceda38245cc57eb8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\ff02c5a5ede1c31cce8f9e4bf2a631f562f29a4b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="6fb6ac3e8d3b9013819920d9ea11f3803c4c0033">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ed6ea6e65882a24500a48a3684d43692d245d142\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\ae476c8a209079ae788c047793eccc5a4667f155\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="1630658fbc2d222b988603c27b4a4249586fbfe7">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_278dbb15218a0ae5e89e3a5b2870c25c7c482f6e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\.android\build-cache\74e30538882036cd6e0b450ae9788d6c0a9643f1\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="f02263e35e52668dd17b73bf961437e3d562b35f">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_460cc3b05f59c42a143da40c5e84a95f84a9cfce\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\thele\MyFirstApp\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.1"
+        sha1="a517275f5c33e15bafb83d9e3c6475fc79ed495c">
+        <dex dex="C:\Users\thele\MyFirstApp\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_cc2d8fa4546bcf910600bf801c2d608379e909bb\classes.dex" />
+    </item>
+
+</items>
