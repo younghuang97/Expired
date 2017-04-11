@@ -6,6 +6,7 @@
  */
 #include <iostream>
 #include "Fridge.h"
+#include "stdafx.h"
 
 int main(int argc, char** argv)
 {

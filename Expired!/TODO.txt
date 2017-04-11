@@ -14,3 +14,4 @@
 12. US vs Non-US Date Format Options
 13. Language Options
 14. Android PHP/MYSQL Database Integration
+15. echo newline characters
