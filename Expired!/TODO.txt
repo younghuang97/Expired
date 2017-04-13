@@ -13,5 +13,6 @@
 11. Is the operator< for Item even needed?
 12. US vs Non-US Date Format Options
 13. Language Options
-14. Android PHP/MYSQL Database Integration
+14. Android PHP/MYSQL Database Integration(WORKING ON)
 15. echo newline characters
+16. Currently uses php scripts in WAMP folder instead of git repos, so change path
