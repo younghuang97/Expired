@@ -1,4 +1,4 @@
-package com.example.thele.myfirstapp;
+package com.example.thele.expired;
 
 import android.content.Intent;
 import android.support.v4.view.MenuItemCompat;
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
     // allow user to add an item here
     public void onButtonTap(View v) {
-        Intent intent = new Intent(this, AddActivity.class);
+        Intent intent = new Intent(this, GetActivity.class);
         startActivity(intent);
     }
 }
