@@ -9,32 +9,31 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 public class Fridge
 {
     Map<String, HashMap<String, Item>> purFridge = new HashMap<String, HashMap<String, Item>>();
     Map<String, HashMap<String, Item>> expFridge = new HashMap<String, HashMap<String, Item>>();
-    Map<String, Pair> expdates = new HashMap<String, Pair>();
+    Map<String, PairofDates> expdates = new HashMap<String, PairofDates>();
 
-    void add(Item item)
+    void add(Item item, String type)
     {
         String strDayExp = item.getDateExpired();
         String strDayPur = item.getDatePurchased();
+        String itemName = item.getName();
 
-        // if no day expired was given
+        // if no day expired was given, calculate it using hashmap of expected expiration date
         if (strDayExp.length() == 0)
         {
-            // parse day exp + 
+            strDayExp = calcExp(itemName, type, strDayPur); 
+            item.setDateExpired(strDayExp);
         }
 
         HashMap<String, Item> foundMap1 = expFridge.get(strDayExp);
         HashMap<String, Item> foundMap2 = purFridge.get(strDayPur);
-
-        String itemName = item.getName();
-
-        //TODO: int dayExp = calcExp(itemName);
 
         // add the element to the set if found
         if (foundMap1 != null)
@@ -75,6 +74,8 @@ public class Fridge
 
     void printDate(String date)
     {
+        if (date.length() != 8) return;
+
         String day;
         String month;
         String year;
@@ -128,25 +129,39 @@ public class Fridge
         }
     }
 
-    String calcExp(String item_name, String type)
+    void printDatabase()
     {
-        SimpleDateFormat dateFormat = new SimpleDataFormat("yyyyMMdd");
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(dateFormat.parse(item_name));
-        int numofDays;
+        /*for ( PairofDates pair : expdates.values())
+        {
+            System.out.println("Fridge Days: " + pair.getFridge());
+            System.out.println("Freezer Days: " + pair.getFreezer());
+        }*/
+        Set<String> keys = expdates.keySet();
+        for ( String key : keys)
+        {
+            PairofDates value = expdates.get(key);
+            System.out.println("Food: " + key);
+            System.out.println("Fridge Days: " + value.getFridge());
+            System.out.println("Freezer Days: " + value.getFreezer());
+        }
+    }
+
+    // TODO: the plusDays method isn't working
+    String calcExp(String item_name, String type, String dayPurchased)
+    {
+        int numofDays = 0;
+        LocalDate parsedDate = LocalDate.parse(dayPurchased, DateTimeFormatter.BASIC_ISO_DATE);
+        PairofDates pair = expdates.get(item_name);
         if (type == "fridge")
         {
-
+            numofDays = pair.getFridge();
         }
         else if (type == "freeze")
         {
-
+            numofDays = pair.getFreezer();
         }
-        cal.add(Calendar.DATE, numofDays);
-        // get today's date and add # of days stored in database field
-        // search through database
-        // set field of item to date found
-        return dateExp;
+        parsedDate = parsedDate.plusDays(numofDays);
+        return parsedDate.format(DateTimeFormatter.BASIC_ISO_DATE);
     }
 
     // on program startup, load the expiration dates, so user has quick access to them
@@ -188,9 +203,9 @@ public class Fridge
         while(file.hasNext())
         {
             String name = file.next();
-            String fridgeDate = file.next();
-            String freezerDate = file.next();
-            expdates.put(name, new Pair(fridgeDate, freezerDate));
+            int fridgeDate = Integer.parseInt(file.next());
+            int freezerDate = Integer.parseInt(file.next());
+            expdates.put(name, new PairofDates(fridgeDate, freezerDate));
         }
     }
 

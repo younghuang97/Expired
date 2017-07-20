@@ -30,6 +30,7 @@ public class Item
 	public String getName() { return name; };
 	public String getDatePurchased() { return datePurchased; };
 	public String getDateExpired() { return dateExpired; };
+	public void setDateExpired(String dateExpired) { this.dateExpired = dateExpired; };
 }
 
 /*bool Item::operator<(const Item& item) const

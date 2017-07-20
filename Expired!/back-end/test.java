@@ -18,7 +18,7 @@ public class test {
 		Item item3 = new Item("Beef", "20170330", "20170410");
 		Item item4 = new Item("Bread", "20170329", "20170330");
 		*/
-		Item item5 = new Item("Beef", "20170330");
+		Item item5 = new Item("Beef", "20170325");
 
 		// add items
 		/*
@@ -27,12 +27,17 @@ public class test {
 		fridge.add(item3);
 		fridge.add(item4);
 		*/
-		fridge.add(item5);
+		fridge.add(item5, "fridge");
+
+		// debug use
+		fridge.printDatabase();
+		System.out.println("");
 
 		// print items
 		fridge.printContents(5);
 		System.out.println("");
 		fridge.printRecent(5);
 		System.out.println("");
+
 	}
 }
