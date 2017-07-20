@@ -26,7 +26,7 @@ public class GetActivity extends AppCompatActivity {
     TextView fridgeTxt;
     TextView frozenTxt;
     String item_name;
-    String server_url = "http://128.54.238.234/query.php";
+    String server_url = "http://128.54.240.85/query.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
