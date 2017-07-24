@@ -9,7 +9,8 @@ public class test {
 	public static void main(String args[])
 	{
 		Fridge fridge = new Fridge();
-		fridge.readExpired("expdates.txt");
+		fridge.readDatabase();
+		fridge.readList();
 
 		// create items
 		/*
@@ -18,7 +19,7 @@ public class test {
 		Item item3 = new Item("Beef", "20170330", "20170410");
 		Item item4 = new Item("Bread", "20170329", "20170330");
 		*/
-		Item item5 = new Item("Beef", "20170325");
+		//Item item5 = new Item("Beef", "20170325");
 
 		// add items
 		/*
@@ -27,7 +28,7 @@ public class test {
 		fridge.add(item3);
 		fridge.add(item4);
 		*/
-		fridge.add(item5, "fridge");
+		//fridge.add(item5, "fridge");
 
 		// debug use
 		fridge.printDatabase();

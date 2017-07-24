@@ -146,7 +146,6 @@ public class Fridge
         }
     }
 
-    // TODO: the plusDays method isn't working
     String calcExp(String item_name, String type, String dayPurchased)
     {
         int numofDays = 0;
@@ -165,10 +164,11 @@ public class Fridge
     }
 
     // on program startup, load the expiration dates, so user has quick access to them
-    void readExpired(String fileName)
+    void readDatabase()
     {
         Scanner file;
-        File f = new File("expdate.txt");
+        // TODO: path needs to be changed later
+        File f = new File("C:\\Users\\thele\\IdeaProjects\\Expired!\\src\\database.txt");
         // open file
         try
         {
@@ -207,6 +207,7 @@ public class Fridge
             int freezerDate = Integer.parseInt(file.next());
             expdates.put(name, new PairofDates(fridgeDate, freezerDate));
         }
+        file.close();
     }
 
     // used when user wants to change an expiration date or add one of their own
@@ -216,13 +217,62 @@ public class Fridge
     }
 
     // on program startup, loads up the list
-    void readList(String fileName)
+    void readList()
+    {
+        Scanner file;
+        // TODO: path needs to be changed later
+        File f = new File("C:\\Users\\thele\\IdeaProjects\\Expired!\\src\\fridge.txt");
+        // open file
+        try
+        {
+            file = new Scanner(f);
+        }
+        // if you can't, create a new one
+        catch(Exception e)
+        {
+            System.out.println("Could not find file, creating a new one now.");
+            try
+            {
+                f.createNewFile();
+            }
+            catch(Exception e2)
+            {
+                System.err.println("This shouldn't be caught.");
+                e2.printStackTrace();
+                throw new RuntimeException();
+            }
+            try
+            {
+                file = new Scanner(f);
+            }
+            catch(Exception e3)
+            {
+                System.err.println("This shouldn't be caught either.");
+                e3.printStackTrace();
+                throw new RuntimeException();
+            }
+        }
+        // reads from file and fills up the expired hashtable
+        while(file.hasNext())
+        {
+            String name = file.next();
+            String datePur = file.next();
+            String dateExp = file.next();
+            String typeStorage = file.next();
+            Item item = new Item(name, datePur, dateExp);
+            add(item, typeStorage);
+        }
+        file.close();
+    }
+
+    // when user adds an entry, we write it to the list file
+    void writeList()
     {
 
     }
 
-    // when user adds an entry, we write it to the list file
-    void writeList(String fileName)
+    // change storage type and its respective expiration date
+    void changeType(String name)
     {
 
     }
