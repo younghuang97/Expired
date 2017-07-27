@@ -5,35 +5,34 @@
  *      Author: thele
  */
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.io.FileWriter;
+import java.util.*;
 import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Set;
 
 public class Fridge
 {
-    Map<String, HashMap<String, Item>> purFridge = new HashMap<String, HashMap<String, Item>>();
-    Map<String, HashMap<String, Item>> expFridge = new HashMap<String, HashMap<String, Item>>();
-    Map<String, PairofDates> expdates = new HashMap<String, PairofDates>();
+    Map<String, TreeMap<String, Item>> expFridge = new TreeMap<String, TreeMap<String, Item>>();
+    Map<String, TreeMap<String, Item>> purFridge = new TreeMap<String, TreeMap<String, Item>>();
+    Map<String, PairofDates> expDates = new HashMap<String, PairofDates>();
 
-    void add(Item item, String type)
+    void add(Item item)
     {
         String strDayExp = item.getDateExpired();
         String strDayPur = item.getDatePurchased();
         String itemName = item.getName();
+        String type = item.getStorageType();
 
         // if no day expired was given, calculate it using hashmap of expected expiration date
         if (strDayExp.length() == 0)
         {
-            strDayExp = calcExp(itemName, type, strDayPur); 
+            strDayExp = calcExp(itemName, type, strDayPur);
             item.setDateExpired(strDayExp);
         }
 
-        HashMap<String, Item> foundMap1 = expFridge.get(strDayExp);
-        HashMap<String, Item> foundMap2 = purFridge.get(strDayPur);
+        TreeMap<String, Item> foundMap1 = expFridge.get(strDayExp);
+        TreeMap<String, Item> foundMap2 = purFridge.get(strDayPur);
 
         // add the element to the set if found
         if (foundMap1 != null)
@@ -42,7 +41,7 @@ public class Fridge
         }
         else // otherwise create a new map and insert the item
         {
-            foundMap1 = new HashMap<String, Item>();
+            foundMap1 = new TreeMap<String, Item>();
             foundMap1.put(itemName, item);
             expFridge.put(strDayExp, foundMap1);
         }
@@ -53,7 +52,7 @@ public class Fridge
         }
         else // otherwise create a new map and insert the item
         {
-            foundMap2 = new HashMap<String, Item>();
+            foundMap2 = new TreeMap<String, Item>();
             foundMap2.put(itemName, item);
             purFridge.put(strDayPur, foundMap2);
         }
@@ -65,10 +64,10 @@ public class Fridge
         String dateExp = item.getDateExpired();
         String datePur = item.getDatePurchased();
 
-        HashMap<String, Item> foundMap1 = expFridge.get(dateExp);
+        TreeMap<String, Item> foundMap1 = expFridge.get(dateExp);
         foundMap1.remove(itemName);
 
-        HashMap<String, Item> foundMap2 = purFridge.get(datePur);
+        TreeMap<String, Item> foundMap2 = purFridge.get(datePur);
         foundMap2.remove(itemName);
     }
 
@@ -87,11 +86,11 @@ public class Fridge
         System.out.print(month + "/" + day + "/" + year);
     }
 
-    void printContents(int amount)
+    void printDateExpired(int amount)
     {
         int counter = 0;
         // iterates through maps
-        for (HashMap<String, Item> map : expFridge.values())
+        for (TreeMap<String, Item> map : expFridge.values())
         {
             // iterates through items
             for (Item item : map.values())
@@ -103,16 +102,16 @@ public class Fridge
                 printDate(item.getDatePurchased());
                 System.out.print("; Date Expires: ");
                 printDate(item.getDateExpired());
-                System.out.println("");
+                System.out.println("; Storage Type: " + item.getStorageType());
             }
         }
     }
 
-    void printRecent(int amount)
+    void printDatePurchased(int amount)
     {
         int counter = 0;
         // iterates through maps
-        for (HashMap<String, Item> map : purFridge.values())
+        for (TreeMap<String, Item> map : purFridge.values())
         {
             // iterates through items
             for (Item item : map.values())
@@ -124,22 +123,17 @@ public class Fridge
                 printDate(item.getDatePurchased());
                 System.out.print("; Date Expires: ");
                 printDate(item.getDateExpired());
-                System.out.println("");
+                System.out.println("; Storage Type: " + item.getStorageType());
             }
         }
     }
 
     void printDatabase()
     {
-        /*for ( PairofDates pair : expdates.values())
-        {
-            System.out.println("Fridge Days: " + pair.getFridge());
-            System.out.println("Freezer Days: " + pair.getFreezer());
-        }*/
-        Set<String> keys = expdates.keySet();
+        Set<String> keys = expDates.keySet();
         for ( String key : keys)
         {
-            PairofDates value = expdates.get(key);
+            PairofDates value = expDates.get(key);
             System.out.println("Food: " + key);
             System.out.println("Fridge Days: " + value.getFridge());
             System.out.println("Freezer Days: " + value.getFreezer());
@@ -150,7 +144,7 @@ public class Fridge
     {
         int numofDays = 0;
         LocalDate parsedDate = LocalDate.parse(dayPurchased, DateTimeFormatter.BASIC_ISO_DATE);
-        PairofDates pair = expdates.get(item_name);
+        PairofDates pair = expDates.get(item_name);
         if (type == "fridge")
         {
             numofDays = pair.getFridge();
@@ -177,7 +171,7 @@ public class Fridge
         // if you can't, create a new one
         catch(Exception e)
         {
-            System.out.println("Could not find file, creating a new one now.");
+            System.out.println("readDatabase() failed to find file. Creating a new one now...");
             try
             {
                 f.createNewFile();
@@ -205,7 +199,7 @@ public class Fridge
             String name = file.next();
             int fridgeDate = Integer.parseInt(file.next());
             int freezerDate = Integer.parseInt(file.next());
-            expdates.put(name, new PairofDates(fridgeDate, freezerDate));
+            expDates.put(name, new PairofDates(fridgeDate, freezerDate));
         }
         file.close();
     }
@@ -230,7 +224,7 @@ public class Fridge
         // if you can't, create a new one
         catch(Exception e)
         {
-            System.out.println("Could not find file, creating a new one now.");
+            System.out.println("readList() failed to find file. Creating a new one now...");
             try
             {
                 f.createNewFile();
@@ -256,11 +250,22 @@ public class Fridge
         while(file.hasNext())
         {
             String name = file.next();
+            if (name == "Switch") break;
             String datePur = file.next();
             String dateExp = file.next();
             String typeStorage = file.next();
-            Item item = new Item(name, datePur, dateExp);
-            add(item, typeStorage);
+            Item item = new Item(name, datePur, dateExp, typeStorage);
+            add(item);
+        }
+        // reads from file and fills up expFridge
+        while(file.hasNext())
+        {
+            String name = file.next();
+            String datePur = file.next();
+            String dateExp = file.next();
+            String typeStorage = file.next();
+            Item item = new Item(name, datePur, dateExp, typeStorage);
+            add(item);
         }
         file.close();
     }
@@ -268,12 +273,63 @@ public class Fridge
     // when user adds an entry, we write it to the list file
     void writeList()
     {
-
-    }
-
-    // change storage type and its respective expiration date
-    void changeType(String name)
-    {
-
+        // TODO: path needs to be changed later
+        File file = new File("C:\\Users\\thele\\IdeaProjects\\Expired!\\src\\fridge.txt");
+        FileWriter fWriter;
+        try
+        {
+            fWriter = new FileWriter(file, false);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("writeList() failed to find file. Creating a new one now...");
+            try
+            {
+                file.createNewFile();
+            }
+            catch(Exception e2)
+            {
+                System.err.println("This shouldn't be caught.");
+                e2.printStackTrace();
+                throw new RuntimeException();
+            }
+            try
+            {
+                fWriter = new FileWriter(file, false);
+            }
+            catch(Exception e3)
+            {
+                System.err.println("This shouldn't be caught either.");
+                e3.printStackTrace();
+                throw new RuntimeException();
+            }
+        }
+        // iterates through maps of expFridge
+        for (TreeMap<String, Item> map : expFridge.values())
+        {
+            // iterates through items
+            for (Item item : map.values())
+            {
+                try {
+                    fWriter.write(item.getName() + '\t' + item.getDatePurchased() + '\t' +
+                            item.getDateExpired() + '\t' + item.getStorageType() + '\n');
+                }
+                catch(Exception e)
+                {
+                    e.printStackTrace();
+                    throw new RuntimeException();
+                }
+            }
+        }
+        try
+        {
+            fWriter.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
     }
 }

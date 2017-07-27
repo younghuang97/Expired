@@ -10,32 +10,35 @@ public class Item
 	private String name;
 	private String datePurchased;
 	private String dateExpired;
-	/*
-	 * Sorts Items by their name field, used for accessing items in an
-	 * unordered_map.
-	 */
-	//bool operator<(const Item& item) const;
+	private String storageType;
+
 	// Constructors
-	public Item(String name, String datePurchased) {
-        this.name = name;
-        this.datePurchased = datePurchased;
-        this.dateExpired = "";
-    }
-	public Item(String name, String datePurchased, String dateExpired) {
+	public Item(String name, String datePurchased, String storageType) {
+		this.name = name;
+		this.datePurchased = datePurchased;
+		this.dateExpired = "";
+		this.storageType = storageType;
+	}
+
+	public Item(String name, String datePurchased, String dateExpired, String storageType) {
         this.name = name;
         this.datePurchased = datePurchased;
         this.dateExpired = dateExpired;
+        this.storageType = storageType;
     }
+
 	// Accessors
 	public String getName() { return name; };
 	public String getDatePurchased() { return datePurchased; };
 	public String getDateExpired() { return dateExpired; };
-	public void setDateExpired(String dateExpired) { this.dateExpired = dateExpired; };
-}
+	public String getStorageType() { return storageType; };
 
-/*bool Item::operator<(const Item& item) const
-{
-	int value = this->getName().compare(item.getName());
-	if (value < 0) return true;
-	else return false;
-}*/
+	// Mutators
+	public void setDateExpired(String dateExpired) { this.dateExpired = dateExpired; };
+
+	// change storage type and its respective expiration date
+	void changeType(String name)
+	{
+
+	}
+}

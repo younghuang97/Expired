@@ -13,32 +13,31 @@ public class test {
 		fridge.readList();
 
 		// create items
-		/*
-		Item item1 = new Item("Carrot", "20170327", "20170330");
-		Item item2 = new Item("Cabbage", "20170329", "20170430");
-		Item item3 = new Item("Beef", "20170330", "20170410");
-		Item item4 = new Item("Bread", "20170329", "20170330");
-		*/
-		//Item item5 = new Item("Beef", "20170325");
+		Item item1 = new Item("Carrot", "20170327", "20170330", "fridge");
+		Item item2 = new Item("Cabbage", "20170329", "freeze");
+		Item item3 = new Item("Beef", "20170330", "20170401", "fridge");
+		Item item4 = new Item("Bread", "20170329", "freeze");
 
 		// add items
-		/*
 		fridge.add(item1);
 		fridge.add(item2);
 		fridge.add(item3);
 		fridge.add(item4);
-		*/
-		//fridge.add(item5, "fridge");
+
+		fridge.writeList();
 
 		// debug use
+		/*
 		fridge.printDatabase();
 		System.out.println("");
+		*/
 
 		// print items
-		fridge.printContents(5);
+		System.out.println("Items sorted by date expired:");
+		fridge.printDateExpired(5);
 		System.out.println("");
-		fridge.printRecent(5);
+		System.out.println("Items sorted by date purchased:");
+		fridge.printDatePurchased(5);
 		System.out.println("");
-
 	}
 }
