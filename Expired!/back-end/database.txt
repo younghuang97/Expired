@@ -1,4 +1,4 @@
-Beef	2	7
-Bread	3	30
-Cabbage	7	21
 Carrot	5	16
+Beef	2	7
+Cabbage	2	20
+Bread	3	30

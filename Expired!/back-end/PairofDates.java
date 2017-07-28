@@ -1,8 +1,8 @@
-public class PairofDates
+public class PairOfDates
 {
     private int fridgedate;
     private int freezerdate;
-    public PairofDates(int fridge, int freezer)
+    public PairOfDates(int fridge, int freezer)
     {
         super();
         this.fridgedate = fridge;

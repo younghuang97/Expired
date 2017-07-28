@@ -13,21 +13,22 @@ import java.time.format.DateTimeFormatter;
 
 public class Fridge
 {
-    Map<String, TreeMap<String, Item>> expFridge = new TreeMap<String, TreeMap<String, Item>>();
-    Map<String, TreeMap<String, Item>> purFridge = new TreeMap<String, TreeMap<String, Item>>();
-    Map<String, PairofDates> expDates = new HashMap<String, PairofDates>();
+    Map<String, TreeMap<String, Item>> expFridge = new TreeMap<>();
+    Map<String, TreeMap<String, Item>> purFridge = new TreeMap<>();
+    Map<String, PairOfDates> expDates = new HashMap<>();
 
     /*
     Adds an item to both TreeMaps
      */
-    void add(Item item)
+    void addItem(Item item)
     {
         String strDayExp = item.getDateExpired();
         String strDayPur = item.getDatePurchased();
         String itemName = item.getName();
         String type = item.getStorageType();
 
-        // if no day expired was given, calculate it using hashmap of expected expiration date
+        // if no day expired was given, calculate it using hashmap of expected
+        // expiration date
         if (strDayExp.length() == 0)
         {
             strDayExp = calcExp(itemName, type, strDayPur);
@@ -37,34 +38,49 @@ public class Fridge
         TreeMap<String, Item> foundMap1 = expFridge.get(strDayExp);
         TreeMap<String, Item> foundMap2 = purFridge.get(strDayPur);
 
-        // add the element to the set if found
+        // addItem the element to the set if found
         if (foundMap1 != null)
         {
             foundMap1.put(itemName, item);
         }
         else // otherwise create a new map and insert the item
         {
-            foundMap1 = new TreeMap<String, Item>();
+            foundMap1 = new TreeMap<>();
             foundMap1.put(itemName, item);
             expFridge.put(strDayExp, foundMap1);
         }
-        // add the element to the set if found
+        // addItem the element to the set if found
         if (foundMap2 != null)
         {
             foundMap2.put(itemName, item);		
         }
         else // otherwise create a new map and insert the item
         {
-            foundMap2 = new TreeMap<String, Item>();
+            foundMap2 = new TreeMap<>();
             foundMap2.put(itemName, item);
             purFridge.put(strDayPur, foundMap2);
         }
     }
 
     /*
+    Adds a PairOfDates to expDates HashMap
+     */
+    void addExpDate(PairOfDates date, String name)
+    {
+        if (expDates.containsKey(name))
+        {
+            expDates.replace(name, date);
+        }
+        else
+        {
+            expDates.put(name, date);
+        }
+    }
+
+    /*
     Removes item from both TreeMaps
      */
-    void remove(Item item)
+    void removeItem(Item item)
     {
         String itemName = item.getName();
         String dateExp = item.getDateExpired();
@@ -75,6 +91,14 @@ public class Fridge
 
         TreeMap<String, Item> foundMap2 = purFridge.get(datePur);
         foundMap2.remove(itemName);
+    }
+
+    /*
+    Removes a PairOfDates from expDates HashMap
+     */
+    void removeExpDate(String name)
+    {
+        expDates.remove(name);
     }
 
     /*
@@ -95,6 +119,10 @@ public class Fridge
         System.out.print(month + "/" + day + "/" + year);
     }
 
+    /*
+    Prints an amount number of item dates starting with the item with the
+    nearest expiration date
+     */
     void printDateExpired(int amount)
     {
         int counter = 0;
@@ -116,6 +144,10 @@ public class Fridge
         }
     }
 
+    /*
+    Prints an amount number of item dates starting with the item with the
+    nearest purchase date
+     */
     void printDatePurchased(int amount)
     {
         int counter = 0;
@@ -142,7 +174,7 @@ public class Fridge
         Set<String> keys = expDates.keySet();
         for ( String key : keys)
         {
-            PairofDates value = expDates.get(key);
+            PairOfDates value = expDates.get(key);
             System.out.println("Food: " + key);
             System.out.println("Fridge Days: " + value.getFridge());
             System.out.println("Freezer Days: " + value.getFreezer());
@@ -151,9 +183,9 @@ public class Fridge
 
     String calcExp(String item_name, String type, String dayPurchased)
     {
-        int numofDays = 0;
+        int numOfDays = 0;
         LocalDate parsedDate = LocalDate.parse(dayPurchased, DateTimeFormatter.BASIC_ISO_DATE);
-        PairofDates pair;
+        PairOfDates pair;
         try
         {
             pair = expDates.get(item_name);
@@ -166,13 +198,13 @@ public class Fridge
         }
         if (type == "fridge")
         {
-            numofDays = pair.getFridge();
+            numOfDays = pair.getFridge();
         }
         else if (type == "freeze")
         {
-            numofDays = pair.getFreezer();
+            numOfDays = pair.getFreezer();
         }
-        parsedDate = parsedDate.plusDays(numofDays);
+        parsedDate = parsedDate.plusDays(numOfDays);
         return parsedDate.format(DateTimeFormatter.BASIC_ISO_DATE);
     }
 
@@ -218,7 +250,7 @@ public class Fridge
             String name = file.next();
             int fridgeDate = Integer.parseInt(file.next());
             int freezerDate = Integer.parseInt(file.next());
-            expDates.put(name, new PairofDates(fridgeDate, freezerDate));
+            expDates.put(name, new PairOfDates(fridgeDate, freezerDate));
         }
         file.close();
     }
@@ -227,7 +259,7 @@ public class Fridge
        TODO: Right now, I am fully re-writing the file after every change, later, if the user is only
        Adding something then the change can simply be appended
     */
-    void writeExpired()
+    void writeDatabase()
     {
         // TODO: path needs to be changed later
         File file = new File("C:\\Users\\thele\\IdeaProjects\\Expired!\\src\\database.txt");
@@ -239,7 +271,7 @@ public class Fridge
         catch(Exception e)
         {
             e.printStackTrace();
-            System.out.println("writeExpired() failed to find file. Creating a new one now...");
+            System.out.println("writeDatabase() failed to find file. Creating a new one now...");
             try
             {
                 file.createNewFile();
@@ -265,7 +297,7 @@ public class Fridge
         Set<String> keys = expDates.keySet();
         for ( String key : keys)
         {
-            PairofDates value = expDates.get(key);
+            PairOfDates value = expDates.get(key);
             try
             {
                 fWriter.write(key + '\t' + value.getFridge() + '\t' + value.getFreezer() + '\n');
@@ -332,7 +364,7 @@ public class Fridge
             String dateExp = file.next();
             String typeStorage = file.next();
             Item item = new Item(name, datePur, dateExp, typeStorage);
-            add(item);
+            addItem(item);
         }
         // reads from file and fills up expFridge
         while(file.hasNext())
@@ -342,7 +374,7 @@ public class Fridge
             String dateExp = file.next();
             String typeStorage = file.next();
             Item item = new Item(name, datePur, dateExp, typeStorage);
-            add(item);
+            addItem(item);
         }
         file.close();
     }
