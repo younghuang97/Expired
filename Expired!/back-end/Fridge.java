@@ -17,6 +17,9 @@ public class Fridge
     Map<String, TreeMap<String, Item>> purFridge = new TreeMap<String, TreeMap<String, Item>>();
     Map<String, PairofDates> expDates = new HashMap<String, PairofDates>();
 
+    /*
+    Adds an item to both TreeMaps
+     */
     void add(Item item)
     {
         String strDayExp = item.getDateExpired();
@@ -58,6 +61,9 @@ public class Fridge
         }
     }
 
+    /*
+    Removes item from both TreeMaps
+     */
     void remove(Item item)
     {
         String itemName = item.getName();
@@ -71,6 +77,9 @@ public class Fridge
         foundMap2.remove(itemName);
     }
 
+    /*
+    Prints date of form "YYYYMMDD" in a prettier U.S format: "MM/DD/YYYY"
+     */
     void printDate(String date)
     {
         if (date.length() != 8) return;
@@ -144,7 +153,17 @@ public class Fridge
     {
         int numofDays = 0;
         LocalDate parsedDate = LocalDate.parse(dayPurchased, DateTimeFormatter.BASIC_ISO_DATE);
-        PairofDates pair = expDates.get(item_name);
+        PairofDates pair;
+        try
+        {
+            pair = expDates.get(item_name);
+        }
+        catch(NullPointerException e)
+        {
+            System.err.println("Database doesn't have expiration dates for " +
+                    item_name + ". Please enter an expiration date manually.");
+            return null;
+        }
         if (type == "fridge")
         {
             numofDays = pair.getFridge();
@@ -204,10 +223,68 @@ public class Fridge
         file.close();
     }
 
-    // used when user wants to change an expiration date or add one of their own
-    void writeExpired(String fileName)
+    /* called anytime a change is made to the database of expiration dates to solidify changes
+       TODO: Right now, I am fully re-writing the file after every change, later, if the user is only
+       Adding something then the change can simply be appended
+    */
+    void writeExpired()
     {
-
+        // TODO: path needs to be changed later
+        File file = new File("C:\\Users\\thele\\IdeaProjects\\Expired!\\src\\database.txt");
+        FileWriter fWriter;
+        try
+        {
+            fWriter = new FileWriter(file, false);
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("writeExpired() failed to find file. Creating a new one now...");
+            try
+            {
+                file.createNewFile();
+            }
+            catch(Exception e2)
+            {
+                System.err.println("This shouldn't be caught.");
+                e2.printStackTrace();
+                throw new RuntimeException();
+            }
+            try
+            {
+                fWriter = new FileWriter(file, false);
+            }
+            catch(Exception e3)
+            {
+                System.err.println("This shouldn't be caught either.");
+                e3.printStackTrace();
+                throw new RuntimeException();
+            }
+        }
+        // iterates through maps of expFridge
+        Set<String> keys = expDates.keySet();
+        for ( String key : keys)
+        {
+            PairofDates value = expDates.get(key);
+            try
+            {
+                fWriter.write(key + '\t' + value.getFridge() + '\t' + value.getFreezer() + '\n');
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+                throw new RuntimeException();
+            }
+        }
+        try
+        {
+            fWriter.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
     }
 
     // on program startup, loads up the list
@@ -270,7 +347,7 @@ public class Fridge
         file.close();
     }
 
-    // when user adds an entry, we write it to the list file
+    // called anytime a change is made to the database of items to solidify changes
     void writeList()
     {
         // TODO: path needs to be changed later
