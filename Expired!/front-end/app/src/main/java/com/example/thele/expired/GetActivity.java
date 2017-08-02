@@ -26,7 +26,6 @@ public class GetActivity extends AppCompatActivity {
     TextView fridgeTxt;
     TextView frozenTxt;
     String item_name;
-    String server_url = "http://128.54.240.85/query.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,56 +40,6 @@ public class GetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                item_name = editText.getText().toString();
-                if (item_name.equals(""))
-                {
-                    fridgeTxt.setText("No input.");
-                    frozenTxt.setText("");
-                }
-                else {
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, server_url,
-
-                            new Response.Listener<String>() {
-                                @Override
-                                public void onResponse(String response) {
-                                    try {
-                                        JSONArray jsonArray = new JSONArray(response);
-                                        JSONObject jsonObject = jsonArray.getJSONObject(0);
-                                        String fridge = jsonObject.getString("fridge");
-                                        if (fridge.equals("null"))
-                                        {
-                                            fridgeTxt.setText("Item isn't stored in database.");
-                                            frozenTxt.setText("");
-                                        }
-                                        else {
-                                            String frozen = jsonObject.getString("frozen");
-                                            fridge = fridge + " days refrigerated.";
-                                            frozen = frozen + " days frozen.";
-                                            fridgeTxt.setText(fridge);
-                                            frozenTxt.setText(frozen);
-                                        }
-                                    } catch (JSONException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-
-                            fridgeTxt.setText("Something went wrong...");
-                            error.printStackTrace();
-                        }
-                    }){
-                        @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String, String> params = new HashMap<>();
-                            params.put("name", item_name);
-
-                            return params;
-                        }
-                    };
-                    MySingleton.getInstance(GetActivity.this).addToRequestQueue(stringRequest);
-                }
             }
         });
     }
