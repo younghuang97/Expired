@@ -1,11 +1,13 @@
 package com.example.thele.expired;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +21,11 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
     }
 
+    public void goToGetActivity(View view) {
+        Intent intent = new Intent(this, GetActivity.class);
+        startActivity(intent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
@@ -28,10 +35,5 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 return false;
-    }
-
-    // allow user to add an item here
-    public void onButtonTap(View v) {
-
     }
 }
