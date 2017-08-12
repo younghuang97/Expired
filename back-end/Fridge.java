@@ -6,10 +6,9 @@
  */
 
 import java.io.FileWriter;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.File;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class Fridge
 {
@@ -184,7 +183,15 @@ public class Fridge
     String calcExp(String item_name, String type, String dayPurchased)
     {
         int numOfDays = 0;
-        LocalDate parsedDate = LocalDate.parse(dayPurchased, DateTimeFormatter.BASIC_ISO_DATE);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        Calendar c = Calendar.getInstance();
+        try {
+            c.setTime(sdf.parse(dayPurchased));
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
         PairOfDates pair;
         try
         {
@@ -204,9 +211,10 @@ public class Fridge
         {
             numOfDays = pair.getFreezer();
         }
-        parsedDate = parsedDate.plusDays(numOfDays);
-        return parsedDate.format(DateTimeFormatter.BASIC_ISO_DATE);
+        c.add(Calendar.DATE, numOfDays);
+        return sdf.format(c.getTime());
     }
+
 
     // on program startup, load the expiration dates, so user has quick access to them
     void readDatabase()
