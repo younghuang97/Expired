@@ -19,9 +19,15 @@ import java.io.File;
 public class Fridge
 {
     private static final String TAG = "Fridge";
-    Map<String, TreeMap<String, Item>> expFridge = new TreeMap<>();
-    Map<String, TreeMap<String, Item>> purFridge = new TreeMap<>();
-    Map<String, PairOfDates> expDates = new HashMap<>();
+    private Map<String, TreeMap<String, Item>> expFridge = new TreeMap<>();
+    private Map<String, TreeMap<String, Item>> purFridge = new TreeMap<>();
+    private Map<String, PairOfDates> expDates = new HashMap<>();
+    private Context myContext;
+
+    public Fridge(Context context)
+    {
+        myContext = context;
+    }
 
     /*
     Adds an item to both TreeMaps
@@ -74,11 +80,7 @@ public class Fridge
      */
     void addExpDate(PairOfDates date, String name)
     {
-        if (expDates.containsKey(name))
-        {
-            // ask user for confirmation
-            expDates.put(name, date);
-        }
+        expDates.put(name, date);
     }
 
     /*
@@ -120,7 +122,7 @@ public class Fridge
         month = date.substring(4, 6);
         year = date.substring(0, 4);
 
-        System.out.print(month + "/" + day + "/" + year);
+        Log.d(TAG, month + "/" + day + "/" + year);
     }
 
     /*
@@ -139,11 +141,11 @@ public class Fridge
                 if (counter >= amount) return; // stop when amount is reached
                 counter++;
 
-                System.out.print("Item: " + item.getName() + "; Date Bought: ");
+                Log.d(TAG, "Item: " + item.getName() + "; Date Bought: ");
                 printDate(item.getDatePurchased());
-                System.out.print("; Date Expires: ");
+                Log.d(TAG, "; Date Expires: ");
                 printDate(item.getDateExpired());
-                System.out.println("; Storage Type: " + item.getStorageType());
+                Log.d(TAG, "; Storage Type: " + item.getStorageType());
             }
         }
     }
@@ -226,7 +228,7 @@ public class Fridge
     {
         Scanner file;
         // TODO: path needs to be changed later
-        File f = new File(Environment.getExternalStorageDirectory() + "/database.txt");
+        File f = new File(myContext.getFilesDir() + "/database.txt");
         // open file
         if (f.exists()) {
             try {
@@ -273,7 +275,7 @@ public class Fridge
     void writeDatabase()
     {
         // TODO: path needs to be changed later
-        File file = new File(Environment.getExternalStorageDirectory() + "/database.txt");
+        File file = new File(myContext.getFilesDir() + "/database.txt");
         FileWriter fWriter;
         try
         {
@@ -300,7 +302,7 @@ public class Fridge
     {
         Scanner file;
         // TODO: path needs to be changed later
-        File f = new File("/data/user/0/com.example.thele.expired/fridge.txt");
+        File f = new File(myContext.getFilesDir() + "/fridge.txt");
         // open file
         try
         {
@@ -338,7 +340,7 @@ public class Fridge
     void writeList()
     {
         // TODO: path needs to be changed later
-        File file = new File("/data/user/0/com.example.thele.expired/fridge.txt");
+        File file = new File(myContext.getFilesDir() + "/fridge.txt");
         FileWriter fWriter;
         try
         {
