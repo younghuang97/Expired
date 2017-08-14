@@ -1,3 +1,4 @@
+package com.example.thele.expired;
 /*
  * Fridge.java
  *
@@ -5,13 +6,19 @@
  *      Author: thele
  */
 
+import android.content.Context;
+import android.os.Environment;
+import android.util.Log;
+
 import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.File;
 
 public class Fridge
 {
+    private static final String TAG = "Fridge";
     Map<String, TreeMap<String, Item>> expFridge = new TreeMap<>();
     Map<String, TreeMap<String, Item>> purFridge = new TreeMap<>();
     Map<String, PairOfDates> expDates = new HashMap<>();
@@ -63,15 +70,13 @@ public class Fridge
 
     /*
     Adds a PairOfDates to expDates HashMap
+    TODO: If an expdate already exists, then it automatically replaces it, ask user for confirmation later
      */
     void addExpDate(PairOfDates date, String name)
     {
         if (expDates.containsKey(name))
         {
-            expDates.replace(name, date);
-        }
-        else
-        {
+            // ask user for confirmation
             expDates.put(name, date);
         }
     }
@@ -174,9 +179,9 @@ public class Fridge
         for ( String key : keys)
         {
             PairOfDates value = expDates.get(key);
-            System.out.println("Food: " + key);
-            System.out.println("Fridge Days: " + value.getFridge());
-            System.out.println("Freezer Days: " + value.getFreezer());
+            Log.d(TAG, "Food: " + key);
+            Log.d(TAG, "Fridge Days: " + value.getFridge());
+            Log.d(TAG, "Freezer Days: " + value.getFreezer());
         }
     }
 
@@ -199,7 +204,7 @@ public class Fridge
         }
         catch(NullPointerException e)
         {
-            System.err.println("Database doesn't have expiration dates for " +
+            Log.e(TAG, "Database doesn't have expiration dates for " +
                     item_name + ". Please enter an expiration date manually.");
             return null;
         }
@@ -221,46 +226,44 @@ public class Fridge
     {
         Scanner file;
         // TODO: path needs to be changed later
-        File f = new File("C:\\Users\\thele\\IdeaProjects\\Expired!\\src\\database.txt");
+        File f = new File(Environment.getExternalStorageDirectory() + "/database.txt");
         // open file
-        try
-        {
-            file = new Scanner(f);
-        }
-        // if you can't, create a new one
-        catch(Exception e)
-        {
-            System.out.println("readDatabase() failed to find file. Creating a new one now...");
-            try
-            {
-                f.createNewFile();
+        if (f.exists()) {
+            try {
+                file = new Scanner(f);
+                // reads from file and fills up the expired hashtable
+                while (file.hasNext()) {
+                    String name = file.next();
+                    int fridgeDate = Integer.parseInt(file.next());
+                    int freezerDate = Integer.parseInt(file.next());
+                    expDates.put(name, new PairOfDates(fridgeDate, freezerDate));
+                }
+                file.close();
             }
-            catch(Exception e2)
+            catch(Exception e)
             {
-                System.err.println("This shouldn't be caught.");
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            Log.d(TAG, "readDatabase() failed to find database.txt. Creating a new one now...");
+            try {
+                if (!f.canWrite())
+                {
+                    Log.d(TAG, "Can't write.");
+                }
+                if (!f.canRead())
+                {
+                    Log.d(TAG, "Can't read.");
+                }
+                f.createNewFile();
+            } catch (Exception e2) {
+                Log.e(TAG, "Failed to create database.txt.");
                 e2.printStackTrace();
                 throw new RuntimeException();
             }
-            try
-            {
-                file = new Scanner(f);
-            }
-            catch(Exception e3)
-            {
-                System.err.println("This shouldn't be caught either.");
-                e3.printStackTrace();
-                throw new RuntimeException();
-            }
         }
-        // reads from file and fills up the expired hashtable
-        while(file.hasNext())
-        {
-            String name = file.next();
-            int fridgeDate = Integer.parseInt(file.next());
-            int freezerDate = Integer.parseInt(file.next());
-            expDates.put(name, new PairOfDates(fridgeDate, freezerDate));
-        }
-        file.close();
     }
 
     /* called anytime a change is made to the database of expiration dates to solidify changes
@@ -270,59 +273,24 @@ public class Fridge
     void writeDatabase()
     {
         // TODO: path needs to be changed later
-        File file = new File("C:\\Users\\thele\\IdeaProjects\\Expired!\\src\\database.txt");
+        File file = new File(Environment.getExternalStorageDirectory() + "/database.txt");
         FileWriter fWriter;
         try
         {
+
             fWriter = new FileWriter(file, false);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-            System.out.println("writeDatabase() failed to find file. Creating a new one now...");
-            try
+            // iterates through maps of expFridge
+            Set<String> keys = expDates.keySet();
+            for ( String key : keys)
             {
-                file.createNewFile();
-            }
-            catch(Exception e2)
-            {
-                System.err.println("This shouldn't be caught.");
-                e2.printStackTrace();
-                throw new RuntimeException();
-            }
-            try
-            {
-                fWriter = new FileWriter(file, false);
-            }
-            catch(Exception e3)
-            {
-                System.err.println("This shouldn't be caught either.");
-                e3.printStackTrace();
-                throw new RuntimeException();
-            }
-        }
-        // iterates through maps of expFridge
-        Set<String> keys = expDates.keySet();
-        for ( String key : keys)
-        {
-            PairOfDates value = expDates.get(key);
-            try
-            {
+                PairOfDates value = expDates.get(key);
                 fWriter.write(key + '\t' + value.getFridge() + '\t' + value.getFreezer() + '\n');
             }
-            catch(Exception e)
-            {
-                e.printStackTrace();
-                throw new RuntimeException();
-            }
-        }
-        try
-        {
             fWriter.close();
         }
-        catch(Exception e)
-        {
+        catch(Exception e) {
             e.printStackTrace();
+            Log.d(TAG, "writeDatabase() failed to find database.txt.");
             throw new RuntimeException();
         }
     }
@@ -332,120 +300,64 @@ public class Fridge
     {
         Scanner file;
         // TODO: path needs to be changed later
-        File f = new File("C:\\Users\\thele\\IdeaProjects\\Expired!\\src\\fridge.txt");
+        File f = new File("/data/user/0/com.example.thele.expired/fridge.txt");
         // open file
         try
         {
             file = new Scanner(f);
+            // reads from file and fills up expFridge
+            while(file.hasNext())
+            {
+                String name = file.next();
+                String datePur = file.next();
+                String dateExp = file.next();
+                String typeStorage = file.next();
+                Item item = new Item(name, datePur, dateExp, typeStorage);
+                addItem(item);
+            }
+            file.close();
         }
         // if you can't, create a new one
         catch(Exception e)
         {
-            System.out.println("readList() failed to find file. Creating a new one now...");
+            System.out.println("readList() failed to find fridge.txt. Attempting to create the file now...");
             try
             {
                 f.createNewFile();
             }
             catch(Exception e2)
             {
-                System.err.println("This shouldn't be caught.");
+                System.err.println("Failed to create fridge.txt.");
                 e2.printStackTrace();
                 throw new RuntimeException();
             }
-            try
-            {
-                file = new Scanner(f);
-            }
-            catch(Exception e3)
-            {
-                System.err.println("This shouldn't be caught either.");
-                e3.printStackTrace();
-                throw new RuntimeException();
-            }
         }
-        // reads from file and fills up the expired hashtable
-        while(file.hasNext())
-        {
-            String name = file.next();
-            if (name == "Switch") break;
-            String datePur = file.next();
-            String dateExp = file.next();
-            String typeStorage = file.next();
-            Item item = new Item(name, datePur, dateExp, typeStorage);
-            addItem(item);
-        }
-        // reads from file and fills up expFridge
-        while(file.hasNext())
-        {
-            String name = file.next();
-            String datePur = file.next();
-            String dateExp = file.next();
-            String typeStorage = file.next();
-            Item item = new Item(name, datePur, dateExp, typeStorage);
-            addItem(item);
-        }
-        file.close();
     }
 
     // called anytime a change is made to the database of items to solidify changes
     void writeList()
     {
         // TODO: path needs to be changed later
-        File file = new File("C:\\Users\\thele\\IdeaProjects\\Expired!\\src\\fridge.txt");
+        File file = new File("/data/user/0/com.example.thele.expired/fridge.txt");
         FileWriter fWriter;
         try
         {
             fWriter = new FileWriter(file, false);
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-            System.out.println("writeList() failed to find file. Creating a new one now...");
-            try
+            // iterates through maps of expFridge
+            for (TreeMap<String, Item> map : expFridge.values())
             {
-                file.createNewFile();
-            }
-            catch(Exception e2)
-            {
-                System.err.println("This shouldn't be caught.");
-                e2.printStackTrace();
-                throw new RuntimeException();
-            }
-            try
-            {
-                fWriter = new FileWriter(file, false);
-            }
-            catch(Exception e3)
-            {
-                System.err.println("This shouldn't be caught either.");
-                e3.printStackTrace();
-                throw new RuntimeException();
-            }
-        }
-        // iterates through maps of expFridge
-        for (TreeMap<String, Item> map : expFridge.values())
-        {
-            // iterates through items
-            for (Item item : map.values())
-            {
-                try {
+                // iterates through items
+                for (Item item : map.values())
+                {
                     fWriter.write(item.getName() + '\t' + item.getDatePurchased() + '\t' +
                             item.getDateExpired() + '\t' + item.getStorageType() + '\n');
                 }
-                catch(Exception e)
-                {
-                    e.printStackTrace();
-                    throw new RuntimeException();
-                }
             }
-        }
-        try
-        {
             fWriter.close();
         }
-        catch(Exception e)
-        {
+        catch(Exception e) {
             e.printStackTrace();
+            Log.d(TAG, "writeList() failed to find fridge.txt.");
             throw new RuntimeException();
         }
     }
