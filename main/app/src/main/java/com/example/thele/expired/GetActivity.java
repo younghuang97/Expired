@@ -49,7 +49,6 @@ public class GetActivity extends AppCompatActivity {
         }
         else {
             fridge.writeList();
-            fridge.printDateExpired(5);
             Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + fridge.printDate(item.getDateExpired()), Toast.LENGTH_SHORT);
             toast.show();
         }

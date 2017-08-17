@@ -136,25 +136,20 @@ public class Fridge
     Prints an amount number of item dates starting with the item with the
     nearest expiration date
      */
-    void printDateExpired(int amount)
+    List<Item> returnDateExpired()
     {
-        int counter = 0;
+        List<Item> list = new ArrayList<>();
+
         // iterates through maps
         for (TreeMap<String, Item> map : expFridge.values())
         {
             // iterates through items
             for (Item item : map.values())
             {
-                if (counter >= amount) return; // stop when amount is reached
-                counter++;
-
-                Log.d(TAG, "Item: " + item.getName() + "; Date Bought: ");
-                printDate(item.getDatePurchased());
-                Log.d(TAG, "; Date Expires: ");
-                printDate(item.getDateExpired());
-                Log.d(TAG, "; Storage Type: " + item.getStorageType());
+                list.add(item);
             }
         }
+        return list;
     }
 
     /*

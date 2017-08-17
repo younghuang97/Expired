@@ -47,7 +47,10 @@ public class Item
 	public String getStorageType() { return storageType; };
 
 	// Mutators
+	public void setName(String name) { this.name = name; };
+	public void setDatePurchased(String datePurchased) { this.datePurchased = datePurchased; };
 	public void setDateExpired(String dateExpired) { this.dateExpired = dateExpired; };
+	public void setStorageType(String storageType) { this.storageType = storageType; };
 
 	// change storage type and its respective expiration date
 	void changeType(String name)
