@@ -6,6 +6,9 @@ package com.example.thele.expired;
  *      Author: thele
  */
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class Item
 {
 	private String name;
@@ -14,6 +17,15 @@ public class Item
 	private String storageType;
 
 	// Constructors
+	public Item(String name, String storageType) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        Calendar cal = Calendar.getInstance();
+		this.name = name;
+		this.datePurchased = sdf.format(cal.getTime());
+		this.dateExpired = "";
+		this.storageType = storageType;
+	}
+
 	public Item(String name, String datePurchased, String storageType) {
 		this.name = name;
 		this.datePurchased = datePurchased;

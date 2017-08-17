@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -39,9 +40,18 @@ public class GetActivity extends AppCompatActivity {
     }
 
     public void buttonClick(View view) {
-        Item item = new Item(editText.getText().toString(), "20170327", "20170330", "fridge");
-        fridge.addItem(item);
-        fridge.writeList();
-        fridge.printDateExpired(5);
+        String itemName = editText.getText().toString();
+        Item item = new Item(itemName, "fridge");
+        if (!fridge.addItem(item))
+        {
+            Toast toast = Toast.makeText(this, itemName + " has failed to be added.", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+        else {
+            fridge.writeList();
+            fridge.printDateExpired(5);
+            Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + fridge.printDate(item.getDateExpired()), Toast.LENGTH_SHORT);
+            toast.show();
+        }
     }
 }

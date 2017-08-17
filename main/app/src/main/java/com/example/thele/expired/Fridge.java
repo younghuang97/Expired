@@ -32,7 +32,7 @@ public class Fridge
     /*
     Adds an item to both TreeMaps
      */
-    void addItem(Item item)
+    boolean addItem(Item item)
     {
         String strDayExp = item.getDateExpired();
         String strDayPur = item.getDatePurchased();
@@ -44,6 +44,10 @@ public class Fridge
         if (strDayExp.length() == 0)
         {
             strDayExp = calcExp(itemName, type, strDayPur);
+            if (strDayExp == "FAIL")
+            {
+                return false;
+            }
             item.setDateExpired(strDayExp);
         }
 
@@ -72,6 +76,7 @@ public class Fridge
             foundMap2.put(itemName, item);
             purFridge.put(strDayPur, foundMap2);
         }
+        return true;
     }
 
     /*
@@ -110,9 +115,9 @@ public class Fridge
     /*
     Prints date of form "YYYYMMDD" in a prettier U.S format: "MM/DD/YYYY"
      */
-    void printDate(String date)
+    String printDate(String date)
     {
-        if (date.length() != 8) return;
+        if (date.length() != 8) return null;
 
         String day;
         String month;
@@ -122,7 +127,9 @@ public class Fridge
         month = date.substring(4, 6);
         year = date.substring(0, 4);
 
-        Log.d(TAG, month + "/" + day + "/" + year);
+        String prettyDate = month + "/" + day + "/" + year;
+        Log.d(TAG, prettyDate);
+        return prettyDate;
     }
 
     /*
@@ -191,9 +198,9 @@ public class Fridge
     {
         int numOfDays = 0;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-        Calendar c = Calendar.getInstance();
+        Calendar cal = Calendar.getInstance();
         try {
-            c.setTime(sdf.parse(dayPurchased));
+            cal.setTime(sdf.parse(dayPurchased));
         }
         catch(Exception e)
         {
@@ -208,7 +215,7 @@ public class Fridge
         {
             Log.e(TAG, "Database doesn't have expiration dates for " +
                     item_name + ". Please enter an expiration date manually.");
-            return null;
+            return "FAIL";
         }
         if (type == "fridge")
         {
@@ -218,8 +225,8 @@ public class Fridge
         {
             numOfDays = pair.getFreezer();
         }
-        c.add(Calendar.DATE, numOfDays);
-        return sdf.format(c.getTime());
+        cal.add(Calendar.DATE, numOfDays);
+        return sdf.format(cal.getTime());
     }
 
 
