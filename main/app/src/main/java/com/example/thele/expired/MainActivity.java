@@ -3,6 +3,7 @@ package com.example.thele.expired;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,12 +16,14 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.support.v7.recyclerview.R.attr.layoutManager;
+
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar myToolbar;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+    private LinearLayoutManager mLayoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        // initialize variables for testing
         Fridge.getFridge().addExpDate(new PairOfDates(5, 16), "Carrot");
         Fridge.getFridge().addExpDate(new PairOfDates(2, 7), "Beef");
         Fridge.getFridge().addExpDate(new PairOfDates(2, 20), "Cabbage");
@@ -48,9 +52,15 @@ public class MainActivity extends AppCompatActivity {
 
         mAdapter = new MyAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);
-
+        // lines between items
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
+                mLayoutManager.getOrientation());
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
     }
 
+    /*
+    On button press, goes to GetActivity
+     */
     public void goToGetActivity(View view) {
         Intent intent = new Intent(this, GetActivity.class);
         startActivity(intent);
@@ -67,6 +77,9 @@ public class MainActivity extends AppCompatActivity {
 return false;
     }
 
+    /*
+    Returning to MainActivity from another Activity refreshes the screen to reflect new data
+     */
     @Override
     public void onResume()
     {

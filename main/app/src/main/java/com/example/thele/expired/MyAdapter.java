@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
 
 /**
  * Created by thele on 8/17/2017.
@@ -23,7 +21,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public TextView purDateView;
         public ViewHolder(View itemView) {
             super(itemView);
-            nameView = (TextView) itemView.findViewById(R.id.name);
+            nameView = (TextView) itemView.findViewById(R.id.name_column);
             expDateView = (TextView) itemView.findViewById(R.id.expdate);
             purDateView = (TextView) itemView.findViewById(R.id.purdate);
         }
