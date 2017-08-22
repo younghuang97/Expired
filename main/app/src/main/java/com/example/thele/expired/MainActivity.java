@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private Toolbar myToolbar;
-    private Fridge fridge;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -35,15 +35,16 @@ public class MainActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        fridge = new Fridge(MainActivity.this);
-        fridge.addExpDate(new PairOfDates(5, 16), "Carrot");
-        fridge.addExpDate(new PairOfDates(2, 7), "Beef");
-        fridge.addExpDate(new PairOfDates(2, 20), "Cabbage");
-        fridge.addExpDate(new PairOfDates(3, 30), "Bread");
+        Fridge.getFridge().addExpDate(new PairOfDates(5, 16), "Carrot");
+        Fridge.getFridge().addExpDate(new PairOfDates(2, 7), "Beef");
+        Fridge.getFridge().addExpDate(new PairOfDates(2, 20), "Cabbage");
+        Fridge.getFridge().addExpDate(new PairOfDates(3, 30), "Bread");
         Item item = new Item("Carrot", "fridge");
-        fridge.addItem(item);
+        Item item2 = new Item("Beef", "fridge");
+        Fridge.getFridge().addItem(item);
+        Fridge.getFridge().addItem(item2);
 
-        List<Item> myDataset = fridge.returnDateExpired();
+        List<Item> myDataset = Fridge.getFridge().returnDateExpired();
 
         mAdapter = new MyAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);
@@ -64,5 +65,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 return false;
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        List<Item> myDataset = Fridge.getFridge().returnDateExpired();
+        mAdapter = new MyAdapter(myDataset);
+        mRecyclerView.setAdapter(mAdapter);
     }
 }

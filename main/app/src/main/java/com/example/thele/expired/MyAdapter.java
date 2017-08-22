@@ -46,8 +46,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     {
             Item item = mDataset.get(position);
             holder.nameView.setText(item.getName());
-            holder.expDateView.setText(fridge.printDate(item.getDateExpired()));
-            holder.purDateView.setText(fridge.printDate(item.getDatePurchased()));
+            holder.expDateView.setText(Fridge.getFridge().printDate(item.getDateExpired()));
+            holder.purDateView.setText(Fridge.getFridge().printDate(item.getDatePurchased()));
     }
 
     public int getItemCount()

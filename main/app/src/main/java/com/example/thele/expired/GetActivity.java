@@ -29,27 +29,19 @@ public class GetActivity extends AppCompatActivity {
         editText = (EditText) findViewById(R.id.findTxt);
         fridgeTxt = (TextView) findViewById(R.id.friTxt);
         frozenTxt = (TextView) findViewById(R.id.froTxt);
-        fridge = new Fridge(GetActivity.this);
-        fridge.readDatabase();
-        fridge.readList();
-        fridge.addExpDate(new PairOfDates(5, 16), "Carrot");
-        fridge.addExpDate(new PairOfDates(2, 7), "Beef");
-        fridge.addExpDate(new PairOfDates(2, 20), "Cabbage");
-        fridge.addExpDate(new PairOfDates(3, 30), "Bread");
-        fridge.writeDatabase();
     }
 
     public void buttonClick(View view) {
         String itemName = editText.getText().toString();
         Item item = new Item(itemName, "fridge");
-        if (!fridge.addItem(item))
+        if (!Fridge.getFridge().addItem(item))
         {
             Toast toast = Toast.makeText(this, itemName + " has failed to be added.", Toast.LENGTH_SHORT);
             toast.show();
         }
         else {
-            fridge.writeList();
-            Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + fridge.printDate(item.getDateExpired()), Toast.LENGTH_SHORT);
+            Fridge.getFridge().writeList(GetActivity.this);
+            Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + Fridge.getFridge().printDate(item.getDateExpired()), Toast.LENGTH_SHORT);
             toast.show();
         }
     }

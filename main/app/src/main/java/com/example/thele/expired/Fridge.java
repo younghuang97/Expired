@@ -22,11 +22,16 @@ public class Fridge
     private Map<String, TreeMap<String, Item>> expFridge = new TreeMap<>();
     private Map<String, TreeMap<String, Item>> purFridge = new TreeMap<>();
     private Map<String, PairOfDates> expDates = new HashMap<>();
-    private Context myContext;
+    private static Fridge fridge = null;
 
-    public Fridge(Context context)
-    {
-        myContext = context;
+    private Fridge() { }
+
+    public static Fridge getFridge(){
+        if (fridge == null)
+        {
+            fridge = new Fridge();
+        }
+        return fridge;
     }
 
     /*
@@ -226,7 +231,7 @@ public class Fridge
 
 
     // on program startup, load the expiration dates, so user has quick access to them
-    void readDatabase()
+    void readDatabase(Context myContext)
     {
         Scanner file;
         // TODO: path needs to be changed later
@@ -274,7 +279,7 @@ public class Fridge
        TODO: Right now, I am fully re-writing the file after every change, later, if the user is only
        Adding something then the change can simply be appended
     */
-    void writeDatabase()
+    void writeDatabase(Context myContext)
     {
         // TODO: path needs to be changed later
         File file = new File(myContext.getFilesDir() + "/database.txt");
@@ -300,7 +305,7 @@ public class Fridge
     }
 
     // on program startup, loads up the list
-    void readList()
+    void readList(Context myContext)
     {
         Scanner file;
         // TODO: path needs to be changed later
@@ -339,7 +344,7 @@ public class Fridge
     }
 
     // called anytime a change is made to the database of items to solidify changes
-    void writeList()
+    void writeList(Context myContext)
     {
         // TODO: path needs to be changed later
         File file = new File(myContext.getFilesDir() + "/fridge.txt");
