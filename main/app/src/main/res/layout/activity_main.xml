@@ -49,7 +49,7 @@
         android:layout_alignBaseline="@+id/name_column"
         android:layout_alignBottom="@+id/name_column"
         android:layout_marginLeft="130dp"
-        android:text="ExpDate" />
+        android:text="Expiration Date" />
 
     <TextView
         android:id="@+id/purdate_column"
@@ -58,6 +58,6 @@
         android:layout_alignBaseline="@+id/expdate_column"
         android:layout_alignBottom="@+id/expdate_column"
         android:layout_marginLeft="265dp"
-        android:text="PurDate" />
+        android:text="Purchase Date" />
 
 </RelativeLayout>

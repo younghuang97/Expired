@@ -1,15 +1,8 @@
-1. Fix memory leaks at the end
 3. Mobile feature: Notifications when date expired approaches for items.
 6. Autocomplete functionality(TST)
-7. Some tests:
-    Erase item not in the map
-8. Add user ability to choose their own expiration date
-    So implement another add method
-9. Having the same key causes problems
+8. Add user ability to choose their own expiration date, if no database is unsatisfactory
+9. Having the same key causes problems?
 10. Consider what to do when adding duplicate items(all fields the same) -- Maybe have a quantity field to aid with this
-11. Is the operator< for Item even needed?
-12. US vs Non-US Date Format Options
-13. Language Options
-14. Android PHP/MYSQL Database Integration(WORKING ON)
-15. echo newline characters
-16. Apply compression to database txt file
+12/13. US vs Non-US Date Format Options, Language Options
+14. Apply compression to database txt file
+15. Add a button to edit the item

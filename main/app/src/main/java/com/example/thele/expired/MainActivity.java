@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private LinearLayoutManager mLayoutManager;
+    private List<Item> myDataset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         Fridge.getFridge().addItem(item);
         Fridge.getFridge().addItem(item2);
 
-        List<Item> myDataset = Fridge.getFridge().returnDateExpired();
+        myDataset = Fridge.getFridge().returnDateExpired();
 
         mAdapter = new MyAdapter(myDataset);
         mRecyclerView.setAdapter(mAdapter);
