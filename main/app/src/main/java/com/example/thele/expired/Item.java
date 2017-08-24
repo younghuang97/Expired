@@ -26,10 +26,10 @@ public class Item
 		this.storageType = storageType;
 	}
 
-	public Item(String name, String datePurchased, String storageType) {
+	public Item(String name, String dateExpired, String storageType) {
 		this.name = name;
-		this.datePurchased = datePurchased;
-		this.dateExpired = "";
+		this.datePurchased = "";
+		this.dateExpired = dateExpired;
 		this.storageType = storageType;
 	}
 

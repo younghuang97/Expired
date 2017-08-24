@@ -10,13 +10,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import static android.support.v7.recyclerview.R.attr.layoutManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,10 +55,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    On button press, goes to GetActivity
+    On button press, goes to AddActivity
      */
     public void goToGetActivity(View view) {
-        Intent intent = new Intent(this, GetActivity.class);
+        Intent intent = new Intent(this, AddActivity.class);
         startActivity(intent);
     }
 

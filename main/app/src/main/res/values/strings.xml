@@ -3,5 +3,10 @@
     <string name="title">Expired!</string>
     <string name="button_add">Add</string>
     <string name="action_search">Search...</string>
-    <string name="title_activity_main2">Main2Activity</string>
+    <string name="hint_name">Name</string>
+    <string name="hint_expdate">Expiration Date</string>
+    <string name="hint_storagetype">Storage Type</string>
+    // used for to fix errors
+    <item name="visible" type="id"/>
+    <item name="masked" type="id"/>
 </resources>
