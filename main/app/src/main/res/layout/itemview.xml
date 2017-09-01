@@ -34,19 +34,19 @@
         android:layout_alignBaseline="@+id/expdate"
         android:layout_alignBottom="@+id/expdate" />
     <Button
-        android:id="@+id/buttonedit"
+        android:id="@+id/editbutton"
+        android:background="@drawable/editbutton"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:text="E"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="295dp"
         android:layout_marginTop="3dp" />
 
     <Button
-        android:id="@+id/buttonx"
+        android:id="@+id/deletebutton"
+        android:background="@drawable/deletebutton"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:text="X"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="340dp"
         android:layout_marginTop="3dp" />
