@@ -133,7 +133,6 @@ public class Fridge
         year = date.substring(0, 4);
 
         String prettyDate = month + "/" + day + "/" + year;
-        Log.d(TAG, prettyDate);
         return prettyDate;
     }
 
@@ -209,7 +208,7 @@ public class Fridge
         PairOfDates pair;
         try
         {
-            pair = expDates.get(item_name);
+            pair = expDates.get(item_name.toLowerCase());
         }
         catch(NullPointerException e)
         {
@@ -217,11 +216,11 @@ public class Fridge
                     item_name + ". Please enter an expiration date manually.");
             return "FAIL";
         }
-        if (type == "fridge")
+        if (type.equals("fridge"))
         {
             numOfDays = pair.getFridge();
         }
-        else if (type == "freeze")
+        else if (type.equals("freeze") || type.equals("freezer"))
         {
             numOfDays = pair.getFreezer();
         }

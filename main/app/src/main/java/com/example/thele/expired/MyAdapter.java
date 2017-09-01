@@ -20,13 +20,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         public TextView nameView;
         public TextView expDateView;
         public TextView purDateView;
+        public Button buttonEdit;
         public Button buttonX;
         public ViewHolder(View itemView) {
             super(itemView);
             nameView = (TextView) itemView.findViewById(R.id.name_column);
             expDateView = (TextView) itemView.findViewById(R.id.expdate);
             purDateView = (TextView) itemView.findViewById(R.id.purdate);
-            buttonX = (Button) itemView.findViewById(R.id.button);
+            buttonEdit = (Button) itemView.findViewById(R.id.buttonedit);
+            buttonX = (Button) itemView.findViewById(R.id.buttonx);
         }
     }
 
@@ -47,16 +49,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             holder.nameView.setText(item.getName());
             holder.expDateView.setText(Fridge.getFridge().printDate(item.getDateExpired()));
             holder.purDateView.setText(Fridge.getFridge().printDate(item.getDatePurchased()));
+            holder.buttonEdit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
             holder.buttonX.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                int pos = holder.getAdapterPosition();
-                mDataset.remove(pos);
-                notifyItemRemoved(pos);
-                notifyItemRangeChanged(pos,mDataset.size());
-                Fridge.getFridge().removeItem(item);
-            }
-        });
+                @Override
+                public void onClick(View v){
+                    int pos = holder.getAdapterPosition();
+                    mDataset.remove(pos);
+                    notifyItemRemoved(pos);
+                    notifyItemRangeChanged(pos,mDataset.size());
+                    Fridge.getFridge().removeItem(item);
+                }
+            });
     }
 
     public int getItemCount()

@@ -35,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // initialize variables for testing
-        Fridge.getFridge().addExpDate(new PairOfDates(5, 16), "Carrot");
-        Fridge.getFridge().addExpDate(new PairOfDates(2, 7), "Beef");
-        Fridge.getFridge().addExpDate(new PairOfDates(2, 20), "Cabbage");
-        Fridge.getFridge().addExpDate(new PairOfDates(3, 30), "Bread");
-        Item item = new Item("Carrot", "fridge");
-        Item item2 = new Item("Beef", "fridge");
+        Fridge.getFridge().addExpDate(new PairOfDates(5, 16), "carrot");
+        Fridge.getFridge().addExpDate(new PairOfDates(2, 7), "beef");
+        Fridge.getFridge().addExpDate(new PairOfDates(2, 20), "cabbage");
+        Fridge.getFridge().addExpDate(new PairOfDates(3, 30), "bread");
+        /*Item item = new Item("Carrot", "fridge");
+        Item item2 = new Item("beef", "fridge");
         Fridge.getFridge().addItem(item);
-        Fridge.getFridge().addItem(item2);
+        Fridge.getFridge().addItem(item2);*/
 
         myDataset = Fridge.getFridge().returnDateExpired();
 

@@ -6,3 +6,6 @@
 12/13. US vs Non-US Date Format Options, Language Options
 14. Apply compression to database txt file
 15. Add a button to edit the item
+16. Play around with SnackBar over Toast, since I can add an undo button if the user made a mistake when adding/editing an item
+17. Find a prettier way to display error messages to the user instead of using toasts
+18. Find a way to lower the font size as food names get too big

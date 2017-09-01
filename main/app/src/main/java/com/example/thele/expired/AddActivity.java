@@ -41,7 +41,7 @@ public class AddActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "2", Toast.LENGTH_SHORT);
             toast.show();
         }
-        else if (!storageType.equals("fridge") && !storageType.equals("freezer") && !storageType.equals("misc")) {
+        else if (!storageType.equals("fridge") && !storageType.equals("freeze") && !storageType.equals("freezer") && !storageType.equals("misc")) {
             //Display a toast or something "Please enter a valid storage type or enter "misc"."
             Toast toast = Toast.makeText(this, storageType, Toast.LENGTH_SHORT);
             toast.show();
