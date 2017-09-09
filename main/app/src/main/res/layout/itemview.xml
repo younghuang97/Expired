@@ -34,7 +34,7 @@
         android:layout_alignBaseline="@+id/expdate"
         android:layout_alignBottom="@+id/expdate" />
     <Button
-        android:id="@+id/editbutton"
+        android:id="@+id/tinyeditbutton"
         android:background="@drawable/editbutton"
         android:layout_width="35dp"
         android:layout_height="35dp"
@@ -43,7 +43,7 @@
         android:layout_marginTop="3dp" />
 
     <Button
-        android:id="@+id/deletebutton"
+        android:id="@+id/tinydeletebutton"
         android:background="@drawable/deletebutton"
         android:layout_width="35dp"
         android:layout_height="35dp"

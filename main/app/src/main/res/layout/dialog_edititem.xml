@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:gravity="center">
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/item_name"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etPurchaseDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/purchase_date"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/etExpirationDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/expiration_date"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/etStorageType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/storage_type"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/editbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Edit" />
+
+</LinearLayout>

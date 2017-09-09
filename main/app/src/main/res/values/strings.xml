@@ -6,6 +6,10 @@
     <string name="hint_name">Name</string>
     <string name="hint_expdate">Expiration Date</string>
     <string name="hint_storagetype">Storage Type</string>
+    <string name="item_name">Item Name</string>
+    <string name="expiration_date">Expiration Date</string>
+    <string name="storage_type">Storage Type</string>
+    <string name="purchase_date">Purchase Date</string>
     // used for to fix errors
     <item name="visible" type="id"/>
     <item name="masked" type="id"/>

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         myDataset = Fridge.getFridge().returnDateExpired();
 
-        mAdapter = new MyAdapter(myDataset);
+        mAdapter = new MyAdapter(myDataset, MainActivity.this);
         mRecyclerView.setAdapter(mAdapter);
         // lines between items
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
@@ -81,7 +81,7 @@ return false;
     {
         super.onResume();
         List<Item> myDataset = Fridge.getFridge().returnDateExpired();
-        mAdapter = new MyAdapter(myDataset);
+        mAdapter = new MyAdapter(myDataset, MainActivity.this);
         mRecyclerView.setAdapter(mAdapter);
     }
 }
