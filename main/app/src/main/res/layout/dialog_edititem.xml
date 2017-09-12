@@ -5,37 +5,60 @@
     android:padding="5dp"
     android:gravity="center">
 
-    <EditText
-        android:id="@+id/etName"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/item_name"
-        android:inputType="textPersonName" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/etPurchaseDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/purchase_date"
-        android:inputType="date" />
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/item_name"
+            android:inputType="textPersonName" />
+    </android.support.design.widget.TextInputLayout>
 
-    <EditText
-        android:id="@+id/etExpirationDate"
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/expiration_date"
-        android:inputType="date" />
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/etStorageType"
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etPurchaseDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/purchase_date"
+            android:inputType="date" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/storage_type"
-        android:inputType="textPersonName" />
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etExpirationDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/expiration_date"
+            android:inputType="date" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/etStorageType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/storage_type"
+            android:inputType="textPersonName" />
+
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/editbutton"

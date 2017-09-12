@@ -10,3 +10,4 @@
 17. Find a prettier way to display error messages to the user instead of using toasts
 18. Find a way to lower the font size as food names get too big
 19. Utilize AlertDialog class for dialog box messages to user
+20. When editing an item's date, I want to pull up a better UI rather than just a numpad.
