@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class AddActivity extends AppCompatActivity {
@@ -60,7 +59,7 @@ public class AddActivity extends AppCompatActivity {
                 toast.show();
             } else {
                 Fridge.getFridge().writeList(AddActivity.this);
-                Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + Fridge.getFridge().printDate(item.getDateExpired()), Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + Fridge.getFridge().printPrettyDate(item.getDateExpired()), Toast.LENGTH_SHORT);
                 toast.show();
             }
         }

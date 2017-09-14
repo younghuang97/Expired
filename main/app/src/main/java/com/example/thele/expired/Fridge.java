@@ -7,11 +7,9 @@ package com.example.thele.expired;
  */
 
 import android.content.Context;
-import android.os.Environment;
 import android.util.Log;
 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.File;
@@ -118,9 +116,9 @@ public class Fridge
     }
 
     /*
-    Prints date of form "YYYYMMDD" in a prettier U.S format: "MM/DD/YYYY"
+    Converts date of form "YYYYMMDD" into a prettier format: "MM/DD/YYYY"
      */
-    String printDate(String date)
+    String printPrettyDate(String date)
     {
         if (date.length() != 8) return null;
 
@@ -134,6 +132,25 @@ public class Fridge
 
         String prettyDate = month + "/" + day + "/" + year;
         return prettyDate;
+    }
+
+    /*
+    Converts date of form "MM/DD/YYYY" into format: "YYYYMMDD"
+     */
+    String printDate(String date)
+    {
+        if (date.length() != 10) return null;
+
+        String day;
+        String month;
+        String year;
+
+        day = date.substring(3, 5);
+        month = date.substring(0, 2);
+        year = date.substring(6, 10);
+
+        String mdate = year + month + day;
+        return mdate;
     }
 
     /*
@@ -172,11 +189,10 @@ public class Fridge
                 if (counter >= amount) return; // stop when amount is reached
                 counter++;
 
-                System.out.print("Item: " + item.getName() + "; Date Bought: ");
-                printDate(item.getDatePurchased());
-                System.out.print("; Date Expires: ");
-                printDate(item.getDateExpired());
-                System.out.println("; Storage Type: " + item.getStorageType());
+                Log.d(TAG, "Item: " + item.getName() + "; Date Bought: " +
+                        printPrettyDate(item.getDatePurchased()) + "; Date Expires: " +
+                        printPrettyDate(item.getDateExpired()) + "; Storage Type: " +
+                        item.getStorageType());
             }
         }
     }

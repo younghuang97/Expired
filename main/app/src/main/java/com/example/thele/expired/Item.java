@@ -4,6 +4,7 @@ package com.example.thele.expired;
  *
  *  Created on: Mar 27, 2017
  *      Author: thele
+ *  Dates are stored via "yyyyMMdd"
  */
 
 import java.text.SimpleDateFormat;

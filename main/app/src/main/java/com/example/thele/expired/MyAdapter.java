@@ -1,17 +1,25 @@
 package com.example.thele.expired;
 
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,8 +66,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
     {
             final Item item = mDataset.get(position);
             holder.nameView.setText(item.getName());
-            holder.expDateView.setText(Fridge.getFridge().printDate(item.getDateExpired()));
-            holder.purDateView.setText(Fridge.getFridge().printDate(item.getDatePurchased()));
+            holder.expDateView.setText(Fridge.getFridge().printPrettyDate(item.getDateExpired()));
+            holder.purDateView.setText(Fridge.getFridge().printPrettyDate(item.getDatePurchased()));
             holder.tinyEditButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -68,13 +76,93 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                     final EditText itemName = (EditText) mView.findViewById(R.id.etName);
                     final EditText purDate = (EditText) mView.findViewById(R.id.etPurchaseDate);
                     final EditText expDate = (EditText) mView.findViewById(R.id.etExpirationDate);
-                    final EditText storageType = (EditText) mView.findViewById(R.id.etStorageType);
+                    final AutoCompleteTextView storageType = (AutoCompleteTextView) mView.findViewById(R.id.etStorageType);
+                    // sets a dropdown menu of certain options when editing storage type
+                    String[] storageTypes = mContext.getResources().getStringArray(R.array.storage_types);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, storageTypes);
+                    storageType.setAdapter(adapter);
                     Button editBtn = (Button) mView.findViewById(R.id.editbutton);
 
                     itemName.setText(holder.nameView.getText().toString().trim());
                     purDate.setText(holder.purDateView.getText().toString().trim());
                     expDate.setText(holder.expDateView.getText().toString().trim());
                     storageType.setText(item.getStorageType());
+
+                    mBuilder.setView(mView);
+                    final AlertDialog dialog = mBuilder.create();
+                    dialog.show();
+
+                    // opens a date picker
+                    purDate.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View view, MotionEvent motionEvent) {
+                            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                                final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                                Calendar cal = Calendar.getInstance();
+                                try {
+                                    cal.setTime(sdf.parse(purDate.getText().toString().trim()));
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                DatePickerDialog dpd = new DatePickerDialog(mContext,
+                                        new DatePickerDialog.OnDateSetListener() {
+
+                                            @Override
+                                            public void onDateSet(DatePicker view, int year,
+                                                                  int month, int day) {
+                                                try {
+                                                    // updates data field
+                                                    String sDate = Integer.toString(month + 1) + '/' + day + '/' + year;
+                                                    Date date = sdf.parse(sDate);
+                                                    purDate.setText(sdf.format(date));
+                                                } catch (ParseException e)
+                                                {
+                                                    e.printStackTrace();
+                                                }
+
+                                            }
+                                        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+                                dpd.show();
+                            }
+                            return true;
+                        }
+                    });
+
+                    // opens a date picker
+                    expDate.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View view, MotionEvent motionEvent) {
+                            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                                final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+                                Calendar cal = Calendar.getInstance();
+                                try {
+                                    cal.setTime(sdf.parse(expDate.getText().toString().trim()));
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                DatePickerDialog dpd = new DatePickerDialog(mContext,
+                                        new DatePickerDialog.OnDateSetListener() {
+
+                                            @Override
+                                            public void onDateSet(DatePicker view, int year,
+                                                                  int month, int day) {
+                                                try {
+                                                    // updates data field
+                                                    String sDate = Integer.toString(month + 1) + '/' + day + '/' + year;
+                                                    Date date = sdf.parse(sDate);
+                                                    expDate.setText(sdf.format(date));
+                                                } catch (ParseException e)
+                                                {
+                                                    e.printStackTrace();
+                                                }
+
+                                            }
+                                        }, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
+                                dpd.show();
+                            }
+                            return true;
+                        }
+                    });
 
                     editBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -146,23 +234,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                                 emptyToast.show();
                             }
 
-
-                            // check for valid date(exp date should be at least after today's date)
                             else
                             {
-
+                                holder.expDateView.setText(eDate);
+                                holder.purDateView.setText(pDate);
+                                // removes item, then puts its edited version back in
+                                Fridge.getFridge().removeItem(item);
+                                item.setDateExpired(Fridge.getFridge().printDate(eDate));
+                                item.setDatePurchased(Fridge.getFridge().printDate(pDate));
+                                Fridge.getFridge().addItem(item);
+                                Fridge.getFridge().printDatePurchased(3);
                             }
                             // check for valid storage types.)
 
-                            // replaces the item's details where applicable
-
-                            // update main activity to reflect changes
+                            dialog.dismiss();
                         }
                     });
 
-                    mBuilder.setView(mView);
-                    AlertDialog dialog = mBuilder.create();
-                    dialog.show();
+
                 }
             });
             holder.tinyDeleteButton.setOnClickListener(new View.OnClickListener() {

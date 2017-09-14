@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         Item item2 = new Item("beef", "fridge");
         Fridge.getFridge().addItem(item);
         Fridge.getFridge().addItem(item2);
+        Fridge.getFridge().printDatePurchased(3);
 
         myDataset = Fridge.getFridge().returnDateExpired();
 

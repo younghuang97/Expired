@@ -10,6 +10,11 @@
     <string name="expiration_date">Expiration Date</string>
     <string name="storage_type">Storage Type</string>
     <string name="purchase_date">Purchase Date</string>
+    <string-array name="storage_types">
+        <item>fridge</item>
+        <item>frozen</item>
+        <item>misc</item>
+    </string-array>
     // used for to fix errors
     <item name="visible" type="id"/>
     <item name="masked" type="id"/>
