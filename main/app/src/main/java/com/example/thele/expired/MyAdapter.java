@@ -13,6 +13,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -76,7 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                     final EditText itemName = (EditText) mView.findViewById(R.id.etName);
                     final EditText purDate = (EditText) mView.findViewById(R.id.etPurchaseDate);
                     final EditText expDate = (EditText) mView.findViewById(R.id.etExpirationDate);
-                    final AutoCompleteTextView storageType = (AutoCompleteTextView) mView.findViewById(R.id.etStorageType);
+                    final Spinner storageType = (Spinner) mView.findViewById(R.id.storage_type_spinner);
                     // sets a dropdown menu of certain options when editing storage type
                     String[] storageTypes = mContext.getResources().getStringArray(R.array.storage_types);
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, storageTypes);
@@ -86,7 +87,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                     itemName.setText(holder.nameView.getText().toString().trim());
                     purDate.setText(holder.purDateView.getText().toString().trim());
                     expDate.setText(holder.expDateView.getText().toString().trim());
-                    storageType.setText(item.getStorageType());
+                    String storeType = item.getStorageType();
+                    if (storeType.equals("Fridge"))
+                    {
+                        storageType.setSelection(0);
+                    }
+                    else if (storeType.equals("Freezer"))
+                    {
+                        storageType.setSelection(1);
+                    }
+                    else if (storeType.equals("Misc."))
+                    {
+                        storageType.setSelection(2);
+                    }
 
                     mBuilder.setView(mView);
                     final AlertDialog dialog = mBuilder.create();
@@ -170,7 +183,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                             String name = itemName.getText().toString().trim();
                             String pDate = purDate.getText().toString().trim();
                             String eDate = expDate.getText().toString().trim();
-                            String sType = storageType.getText().toString().trim();
 
                             // checks for empty fields
                             String emptyStringMessage = "The following fields are empty: ";
@@ -207,24 +219,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                                 else
                                 {
                                     emptyStringMessage += "Expiration Date";
-                                    firstEmpty = false;
                                 }
                                 emptyToast.setText(emptyStringMessage);
                                 empty = true;
                             }
-                            if (sType.isEmpty())
-                            {
-                                if (!firstEmpty)
-                                {
-                                    emptyStringMessage += ", Storage Type";
-                                }
-                                else
-                                {
-                                    emptyStringMessage += "Storage Type";
-                                }
-                                emptyToast.setText(emptyStringMessage);
-                                empty = true;
-                            }
+
                             // for proper grammar
                             emptyStringMessage += '.';
                             emptyToast.setText(emptyStringMessage);
@@ -251,9 +250,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                         }
                     });
 
+                    storageType.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View view, MotionEvent motionEvent) {
+                            return false;
+                        }
+                    });
 
                 }
             });
+
             holder.tinyDeleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v){

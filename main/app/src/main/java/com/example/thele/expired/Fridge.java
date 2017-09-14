@@ -232,11 +232,11 @@ public class Fridge
                     item_name + ". Please enter an expiration date manually.");
             return "FAIL";
         }
-        if (type.equals("fridge"))
+        if (type.equals("Fridge"))
         {
             numOfDays = pair.getFridge();
         }
-        else if (type.equals("freeze") || type.equals("freezer"))
+        else if (type.equals("Freezer"))
         {
             numOfDays = pair.getFreezer();
         }
