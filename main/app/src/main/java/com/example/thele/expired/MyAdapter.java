@@ -87,7 +87,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                     itemName.setText(holder.nameView.getText().toString().trim());
                     purDate.setText(holder.purDateView.getText().toString().trim());
                     expDate.setText(holder.expDateView.getText().toString().trim());
-                    String storeType = item.getStorageType();
+                    final String storeType = item.getStorageType();
                     if (storeType.equals("Fridge"))
                     {
                         storageType.setSelection(0);
@@ -183,6 +183,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                             String name = itemName.getText().toString().trim();
                             String pDate = purDate.getText().toString().trim();
                             String eDate = expDate.getText().toString().trim();
+                            String sType = storageType.getSelectedItem().toString().trim();
 
                             // checks for empty fields
                             String emptyStringMessage = "The following fields are empty: ";
@@ -235,12 +236,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
 
                             else
                             {
+                                holder.nameView.setText(name);
                                 holder.expDateView.setText(eDate);
                                 holder.purDateView.setText(pDate);
                                 // removes item, then puts its edited version back in
                                 Fridge.getFridge().removeItem(item);
+                                item.setName(name);
                                 item.setDateExpired(Fridge.getFridge().printDate(eDate));
                                 item.setDatePurchased(Fridge.getFridge().printDate(pDate));
+                                item.setStorageType(sType);
                                 Fridge.getFridge().addItem(item);
                                 Fridge.getFridge().printDatePurchased(3);
                             }
