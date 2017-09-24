@@ -28,8 +28,10 @@ public class Item
 	}
 
 	public Item(String name, String dateExpired, String storageType) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Calendar cal = Calendar.getInstance();
 		this.name = name;
-		this.datePurchased = "";
+		this.datePurchased = sdf.format(cal.getTime());
 		this.dateExpired = dateExpired;
 		this.storageType = storageType;
 	}

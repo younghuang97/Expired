@@ -40,7 +40,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="65dp"
         android:layout_marginLeft="25dp"
-        android:text="Name" />
+        android:text="@string/item_name" />
 
     <TextView
         android:id="@+id/expdate_column"
@@ -49,7 +49,7 @@
         android:layout_alignBaseline="@+id/name_column"
         android:layout_alignBottom="@+id/name_column"
         android:layout_marginLeft="130dp"
-        android:text="Expiration Date" />
+        android:text="@string/expiration_date" />
 
     <TextView
         android:id="@+id/purdate_column"
@@ -58,6 +58,6 @@
         android:layout_alignBaseline="@+id/expdate_column"
         android:layout_alignBottom="@+id/expdate_column"
         android:layout_marginLeft="265dp"
-        android:text="Purchase Date" />
+        android:text="@string/purchase_date" />
 
 </RelativeLayout>

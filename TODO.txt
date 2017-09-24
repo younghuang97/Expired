@@ -12,9 +12,7 @@
 20. When editing an item's date, I want to pull up a better UI rather than just a numpad.
 21. Fridge needs to update when a user deletes an item
 22. Add a safety dialog when a user is trying to delete an item
-23. Add a title when editing storage type, since spinners don't support hints
-24. Edit button needs to make changes to storage type and name still(date is done)
 25. Edit activity_main.xml to be more appealing
-26. Use a spinner for AddActivity's storage type instead of EditText
+26. Handle invalid dates
 
 

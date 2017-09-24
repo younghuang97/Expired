@@ -253,14 +253,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                             dialog.dismiss();
                         }
                     });
-
-                    storageType.setOnTouchListener(new View.OnTouchListener() {
-                        @Override
-                        public boolean onTouch(View view, MotionEvent motionEvent) {
-                            return false;
-                        }
-                    });
-
                 }
             });
 
