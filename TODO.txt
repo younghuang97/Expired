@@ -14,5 +14,11 @@
 22. Add a safety dialog when a user is trying to delete an item
 25. Edit activity_main.xml to be more appealing
 26. Handle invalid dates
-
-
+27. When expiration date has passed, make the item red
+28. When expiration dates is within a week, make the item yellow
+29. Add notifications as expiration dates approach
+30. If item name is too long
+31. Two options with erasing expired items, by default users have to manually delete them, but by going into settings, they can choose how many days
+32. Add something like a button to notify the user of the avg. exp days for an item after they type the name out in the name field
+33. Enable user to edit the database later
+34.

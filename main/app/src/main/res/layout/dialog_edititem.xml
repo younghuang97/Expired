@@ -15,7 +15,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/item_name"
-            android:inputType="text|textAutoComplete" />
+            android:inputType="text|textAutoComplete"
+            android:maxLines="1" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -28,7 +29,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/purchase_date"
-            android:inputType="none" />
+            android:inputType="none"
+            android:maxLines="1" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -42,7 +44,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/expiration_date"
-            android:inputType="none" />
+            android:inputType="none"
+            android:maxLines="1" />
 
     </android.support.design.widget.TextInputLayout>
 

@@ -1,0 +1,10 @@
+Move toast to center after adding
+not everything fits yet
+Purchase date should go above expiration date(adding/editing items)
+EditText need to be one line(all fields)
+Prevent users from manually editing expiration date/purchase date
+Add tapping anywhere else, closes the keyboard
+After adding, redirect to MainActivity
+Better text
+Add button lowered
+

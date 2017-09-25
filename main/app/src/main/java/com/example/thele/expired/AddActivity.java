@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -125,7 +126,7 @@ public class AddActivity extends AppCompatActivity {
 
         if (itemName.length() == 0) {
             //Display a toast or something "Please enter item name."
-            Toast toast = Toast.makeText(this, "1", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, "Please enter item name.", Toast.LENGTH_SHORT);
             toast.show();
         }
         else if (purDate.length() == 0)
@@ -157,7 +158,9 @@ public class AddActivity extends AppCompatActivity {
             } else {
                 Fridge.getFridge().writeList(AddActivity.this);
                 Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + expDate, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
+                finish();
             }
         }
     }
