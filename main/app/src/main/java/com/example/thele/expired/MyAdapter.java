@@ -246,7 +246,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                                 item.setDatePurchased(Fridge.getFridge().printDate(pDate));
                                 item.setStorageType(sType);
                                 Fridge.getFridge().addItem(item);
-                                Fridge.getFridge().printDatePurchased(3);
+                                Fridge.getFridge().writeList(mContext);
                             }
                             // check for valid storage types.)
 
@@ -264,6 +264,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                     notifyItemRemoved(pos);
                     notifyItemRangeChanged(pos,mDataset.size());
                     Fridge.getFridge().removeItem(item);
+                    Fridge.getFridge().writeList(mContext);
                 }
             });
     }

@@ -34,17 +34,25 @@ public class MainActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
+        Fridge.getFridge().readDatabase(this);
+        Fridge.getFridge().readList(this);
+
         // initialize variables for testing
         Fridge.getFridge().addExpDate(new PairOfDates(5, 16), "carrot");
         Fridge.getFridge().addExpDate(new PairOfDates(2, 7), "beef");
         Fridge.getFridge().addExpDate(new PairOfDates(2, 20), "cabbage");
         Fridge.getFridge().addExpDate(new PairOfDates(3, 30), "bread");
-        Item item = new Item("Carrot", "Fridge");
+
+        /*Item item = new Item("Carrot", "Fridge");
         Item item2 = new Item("beef", "Freezer");
-        Item item3 = new Item("LotIon", "Misc.");
+
         Fridge.getFridge().addItem(item);
         Fridge.getFridge().addItem(item2);
+        */
         Fridge.getFridge().printDatePurchased(3);
+
+        //Fridge.getFridge().writeDatabase(this);
+        Fridge.getFridge().writeList(this);
 
         myDataset = Fridge.getFridge().returnDateExpired();
 

@@ -248,21 +248,22 @@ public class Fridge
     // on program startup, load the expiration dates, so user has quick access to them
     void readDatabase(Context myContext)
     {
-        Scanner file;
+        Scanner scanner;
         // TODO: path needs to be changed later
-        File f = new File(myContext.getFilesDir() + "/database.txt");
+        File internalStorageDir = myContext.getFilesDir();
+        File file = new File(internalStorageDir, "database.txt");
         // open file
-        if (f.exists()) {
+        if (file.exists()) {
             try {
-                file = new Scanner(f);
+                scanner = new Scanner(file);
                 // reads from file and fills up the expired hashtable
-                while (file.hasNext()) {
-                    String name = file.next();
-                    int fridgeDate = Integer.parseInt(file.next());
-                    int freezerDate = Integer.parseInt(file.next());
+                while (scanner.hasNext()) {
+                    String name = scanner.next();
+                    int fridgeDate = Integer.parseInt(scanner.next());
+                    int freezerDate = Integer.parseInt(scanner.next());
                     expDates.put(name, new PairOfDates(fridgeDate, freezerDate));
                 }
-                file.close();
+                scanner.close();
             }
             catch(Exception e)
             {
@@ -273,15 +274,15 @@ public class Fridge
         {
             Log.d(TAG, "readDatabase() failed to find database.txt. Creating a new one now...");
             try {
-                if (!f.canWrite())
+                if (!file.canWrite())
                 {
                     Log.d(TAG, "Can't write.");
                 }
-                if (!f.canRead())
+                if (!file.canRead())
                 {
                     Log.d(TAG, "Can't read.");
                 }
-                f.createNewFile();
+                file.createNewFile();
             } catch (Exception e2) {
                 Log.e(TAG, "Failed to create database.txt.");
                 e2.printStackTrace();
@@ -297,7 +298,8 @@ public class Fridge
     void writeDatabase(Context myContext)
     {
         // TODO: path needs to be changed later
-        File file = new File(myContext.getFilesDir() + "/database.txt");
+        File internalStorageDir = myContext.getFilesDir();
+        File file = new File(internalStorageDir, "database.txt");
         FileWriter fWriter;
         try
         {
@@ -322,24 +324,25 @@ public class Fridge
     // on program startup, loads up the list
     void readList(Context myContext)
     {
-        Scanner file;
+        Scanner scanner;
         // TODO: path needs to be changed later
-        File f = new File(myContext.getFilesDir() + "/fridge.txt");
+        File internalStorageDir = myContext.getFilesDir();
+        File file = new File(internalStorageDir, "fridge.txt");
         // open file
         try
         {
-            file = new Scanner(f);
+            scanner = new Scanner(file);
             // reads from file and fills up expFridge
-            while(file.hasNext())
+            while(scanner.hasNext())
             {
-                String name = file.next();
-                String datePur = file.next();
-                String dateExp = file.next();
-                String typeStorage = file.next();
+                String name = scanner.next();
+                String datePur = scanner.next();
+                String dateExp = scanner.next();
+                String typeStorage = scanner.next();
                 Item item = new Item(name, datePur, dateExp, typeStorage);
                 addItem(item);
             }
-            file.close();
+            scanner.close();
         }
         // if you can't, create a new one
         catch(Exception e)
@@ -347,7 +350,7 @@ public class Fridge
             System.out.println("readList() failed to find fridge.txt. Attempting to create the file now...");
             try
             {
-                f.createNewFile();
+                file.createNewFile();
             }
             catch(Exception e2)
             {
@@ -362,7 +365,8 @@ public class Fridge
     void writeList(Context myContext)
     {
         // TODO: path needs to be changed later
-        File file = new File(myContext.getFilesDir() + "/fridge.txt");
+        File internalStorageDir = myContext.getFilesDir();
+        File file = new File(internalStorageDir, "fridge.txt");
         FileWriter fWriter;
         try
         {

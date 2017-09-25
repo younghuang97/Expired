@@ -3,6 +3,7 @@ package com.example.thele.expired;
 import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -117,6 +118,8 @@ public class AddActivity extends AppCompatActivity {
         String expDate = expDateField.getText().toString().trim();
         String purDate = purDateField.getText().toString().trim();
         String storageType = storageTypeField.getSelectedItem().toString().trim();
+        String expDate2 = Fridge.getFridge().printDate(expDate); // used to create the item
+        String purDate2 = Fridge.getFridge().printDate(purDate); // used to create the item
 
         Item item = null;
 
@@ -132,18 +135,18 @@ public class AddActivity extends AppCompatActivity {
             }
             else
             {
-                item = new Item(itemName, expDate, storageType);
+                item = new Item(itemName, expDate2, storageType);
             }
         }
         else
         {
             if (expDate.length() == 0) {
                 item = new Item(itemName, storageType);
-                item.setDatePurchased(purDate);
+                item.setDatePurchased(purDate2);
             }
             else
             {
-                item = new Item(itemName, purDate, expDate, storageType);
+                item = new Item(itemName, purDate2, expDate2, storageType);
             }
         }
         if (item != null)
@@ -153,7 +156,7 @@ public class AddActivity extends AppCompatActivity {
                 toast.show();
             } else {
                 Fridge.getFridge().writeList(AddActivity.this);
-                Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + Fridge.getFridge().printPrettyDate(item.getDateExpired()), Toast.LENGTH_SHORT);
+                Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + expDate, Toast.LENGTH_SHORT);
                 toast.show();
             }
         }
