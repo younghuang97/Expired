@@ -1,5 +1,0 @@
-Move toast to center after adding
-not everything fits yet
-Prevent users from manually editing expiration date/purchase date
-Add tapping anywhere else, closes the keyboard
-Better text

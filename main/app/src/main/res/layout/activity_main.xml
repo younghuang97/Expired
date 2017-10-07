@@ -40,24 +40,30 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="65dp"
         android:layout_marginLeft="25dp"
-        android:text="@string/item_name" />
-
-    <TextView
-        android:id="@+id/expdate_column"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/name_column"
-        android:layout_alignBottom="@+id/name_column"
-        android:layout_marginLeft="130dp"
-        android:text="@string/expiration_date" />
+        android:text="@string/item_name"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/purdate_column"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/expdate_column"
-        android:layout_alignBottom="@+id/expdate_column"
-        android:layout_marginLeft="265dp"
-        android:text="@string/purchase_date" />
+        android:layout_alignBaseline="@+id/name_column"
+        android:layout_alignBottom="@+id/name_column"
+        android:layout_marginLeft="140dp"
+        android:text="@string/purchase_date"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/expdate_column"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/purdate_column"
+        android:layout_alignBottom="@+id/purdate_column"
+        android:layout_marginLeft="285dp"
+        android:text="@string/expiration_date"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

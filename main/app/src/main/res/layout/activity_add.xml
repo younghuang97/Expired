@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/item_name"
             android:inputType="text|textAutoComplete"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:imeOptions="actionDone" />
 
     </android.support.design.widget.TextInputLayout>
 

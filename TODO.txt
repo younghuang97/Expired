@@ -21,4 +21,9 @@
 31. Two options with erasing expired items, by default users have to manually delete them, but by going into settings, they can choose how many days
 32. Add something like a button to notify the user of the avg. exp days for an item after they type the name out in the name field
 33. Enable user to edit the database later
-34.
+34. When user taps elsewhere after typing in a name, close the keyboard.
+35. Make everything scale, delete button is cutoff on my s6 edge.
+36. Prevent user from choosing a purchase earlier later than expiration date and prevent user from choosing a expiration date earlier than purchase date. Do this check when user clicks the button(add/edit).
+38. Handle duplicates so they create a new item rather than overwrite a previous one.
+39. When adding an item, make purchase date filled in with current date by default.
+40. Implement settings + search functionality

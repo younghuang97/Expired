@@ -16,7 +16,8 @@
             android:ems="10"
             android:hint="@string/item_name"
             android:inputType="text|textAutoComplete"
-            android:maxLines="1" />
+            android:maxLines="1"
+            android:imeOptions="actionDone" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -67,5 +68,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="Edit" />
+
+    <Button
+        android:id="@+id/deletebutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete" />
 
 </LinearLayout>

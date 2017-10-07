@@ -2,8 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
->
+    android:orientation="horizontal" >
 
     <TextView
         android:id="@+id/name_column"
@@ -11,43 +10,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="TextView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/expdate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:layout_marginLeft="105dp"
-        android:layout_alignBaseline="@+id/name_column"
-        android:layout_alignBottom="@+id/name_column"
-         />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/purdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        android:layout_marginLeft="220dp"
-        android:layout_alignBaseline="@+id/expdate"
-        android:layout_alignBottom="@+id/expdate" />
-    <Button
-        android:id="@+id/tinyeditbutton"
-        android:background="@drawable/editbutton"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="295dp"
-        android:layout_marginTop="3dp" />
+        android:layout_marginLeft="113dp"
+        android:layout_alignBottom="@+id/name_column"
+        android:textSize="16sp" />
 
-    <Button
-        android:id="@+id/tinydeletebutton"
-        android:background="@drawable/deletebutton"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="340dp"
-        android:layout_marginTop="3dp" />
+    <TextView
+        android:id="@+id/expdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:layout_marginLeft="260dp"
+        android:layout_alignBottom="@+id/purdate"
+        android:textSize="16sp" />
+
 </RelativeLayout>
