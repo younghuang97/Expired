@@ -12,33 +12,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Add all polls in ref as rows
-    /*myRef.addListenerForSingleValueEvent(new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot snapshot) {
-            for (DataSnapshot child : snapshot.getChildren()) {
-
-            }
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-            // Getting Post failed, log a message
-            Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-            // ...
-        }
-    });
-*/
     private static final String TAG = "MainActivity";
     private Toolbar myToolbar;
     private RecyclerView mRecyclerView;
@@ -54,26 +31,6 @@ public class MainActivity extends AppCompatActivity {
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("expirationDates");
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot itemSnapshot: dataSnapshot.getChildren()) {
-                    String expirationDate = itemSnapshot.getValue(String.class);
-                    Log.d(TAG, itemSnapshot.getKey() + " = " + expirationDate);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w(TAG, "Failed to read value.", error.toException());
-            }
-        });
-
         // sets up custom fonts for textviews
         Helper.setCustomFont(this, R.id.itemName, fontPath);
         Helper.setCustomFont(this, R.id.purchaseDate, fontPath);
@@ -88,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         Fridge.getFridge().readList(this);
 
         // Initialize expiration dates from local db
-        Fridge.getFridge().addExpDatesFromJSON(this);
+        //Fridge.getFridge().addExpDatesFromJSON(this);
         Fridge.getFridge().printDatabase();
 
         /*Item item = new Item("Carrot", "Fridge");

@@ -141,10 +141,10 @@ public class Fridge
             }
         }
         catch (IOException e) {
-            Log.d(TAG, "File not found.");
+            Log.d(TAG, "Failed to open foodstorage.json");
         }
         catch (JSONException e) {
-            Log.d(TAG, "Something wrong with JSON file.");
+            Log.d(TAG, "Failed to parse foodstorage.json");
         }
     }
 
@@ -296,7 +296,6 @@ public class Fridge
         return sdf.format(cal.getTime());
     }
 
-
     // on program startup, load the expiration dates, so user has quick access to them
     void readDatabase(Context myContext)
     {
@@ -308,11 +307,16 @@ public class Fridge
         if (file.exists()) {
             try {
                 scanner = new Scanner(file);
-                // reads from file and fills up the expired hashtable
+                // reads from file and fills up the expired hashmap
                 while (scanner.hasNext()) {
-                    String name = scanner.next();
-                    int fridgeDate = Integer.parseInt(scanner.next());
-                    int freezerDate = Integer.parseInt(scanner.next());
+
+                    String name = scanner.nextLine();
+                    int fridgeDate = scanner.nextInt();
+                    int freezerDate = scanner.nextInt();
+
+                    /*String name = scanner.next("\t");
+                    int fridgeDate = Integer.parseInt(scanner.next("\t"));
+                    int freezerDate = Integer.parseInt(scanner.next("\n"));*/
                     expDates.put(name, new PairOfDates(fridgeDate, freezerDate));
                 }
                 scanner.close();
@@ -326,15 +330,9 @@ public class Fridge
         {
             Log.d(TAG, "readDatabase() failed to find database.txt. Creating a new one now...");
             try {
-                if (!file.canWrite())
-                {
-                    Log.d(TAG, "Can't write.");
-                }
-                if (!file.canRead())
-                {
-                    Log.d(TAG, "Can't read.");
-                }
                 file.createNewFile();
+                addExpDatesFromJSON(myContext);
+                writeDatabase(myContext);
             } catch (Exception e2) {
                 Log.e(TAG, "Failed to create database.txt.");
                 e2.printStackTrace();
@@ -355,14 +353,13 @@ public class Fridge
         FileWriter fWriter;
         try
         {
-
             fWriter = new FileWriter(file, false);
             // iterates through maps of expFridge
             Set<String> keys = expDates.keySet();
             for ( String key : keys)
             {
                 PairOfDates value = expDates.get(key);
-                fWriter.write(key + '\t' + value.getFridge() + '\t' + value.getFreezer() + '\n');
+                fWriter.write(key + '\n' + value.getFridge() + ' ' + value.getFreezer() + ' ');
             }
             fWriter.close();
         }
