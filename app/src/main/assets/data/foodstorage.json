@@ -1,0 +1,784 @@
+{
+    "Brussels sprouts": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 5.0
+    },
+    "Turkey": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Tamarind": {
+        "fridge_metric": "Months",
+        "fridge": 6.0
+    },
+    "Fatty fish": {
+        "freeze": 3.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Fresh lobster tails": {
+        "freeze": 4.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Weeks",
+        "fridge": 3.0
+    },
+    "Pistachios": {
+        "freeze": 24.0,
+        "fridge_metric": "Months",
+        "freeze_metric": "Months",
+        "fridge": 12.0
+    },
+    "String Cheese": {
+        "fridge_metric": "Months",
+        "fridge": 5.0
+    },
+    "Kefir": {
+        "fridge_metric": "Weeks",
+        "fridge": 1.0
+    },
+    "Strawberries": {
+        "fridge_metric": "Days",
+        "fridge": 3.0
+    },
+    "Cauliflower": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 5.0
+    },
+    "Raspberries": {
+        "fridge_metric": "Days",
+        "fridge": 3.0
+    },
+    "Crab meat": {
+        "freeze": 10.0,
+        "fridge_metric": "Months",
+        "freeze_metric": "Months",
+        "fridge": 12.0
+    },
+    "Horseradish": {
+        "fridge_metric": "Months",
+        "fridge": 12.0
+    },
+    "Melons": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Bacon": {
+        "freeze": 1.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 1.0
+    },
+    "Almonds ": {
+        "freeze": 10.0,
+        "fridge_metric": "Months",
+        "freeze_metric": "Months",
+        "fridge": 8.0
+    },
+    "Eggnog": {
+        "freeze": 6.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 5.0
+    },
+    "Live clams, mussels, crab, and oysters": {
+        "freeze": 3.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Dips": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Broccoli and broccoli raab (rapini)": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 5.0
+    },
+    "Corned beef": {
+        "freeze": 1.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 7.0
+    },
+    "Hot dogs": {
+        "freeze": 2.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Peppers": {
+        "freeze": 8.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 14.0
+    },
+    "Scallops": {
+        "freeze": 18.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 3.0
+    },
+    "Chicken": {
+        "freeze": 2.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Pork": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 5.0
+    },
+    "Hummus": {
+        "fridge_metric": "Months",
+        "fridge": 3.0
+    },
+    "Caviar": {
+        "fridge_metric": "Weeks",
+        "fridge": 4.0
+    },
+    "Pheasant": {
+        "freeze": 6.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Shrimp, crayfish": {
+        "freeze": 18.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 3.0
+    },
+    "Beets": {
+        "freeze": 8.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Cantaloupe": {
+        "fridge_metric": "Days",
+        "fridge": 15.0
+    },
+    "Kohlrabi": {
+        "fridge_metric": "Weeks",
+        "fridge": 1.0
+    },
+    "Soy flour": {
+        "fridge_metric": "Months",
+        "fridge": 6.0
+    },
+    "Apples": {
+        "fridge_metric": "Weeks",
+        "fridge": 6.0
+    },
+    "Artichokes, whole": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Rutabagas": {
+        "freeze": 10.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 3.0
+    },
+    "Pesto": {
+        "fridge_metric": "Months",
+        "fridge": 6.0
+    },
+    "Lemongrass": {
+        "freeze": 6.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 9.0
+    },
+    "Giblets": {
+        "freeze": 4.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Bean sprouts": {
+        "fridge_metric": "Days",
+        "fridge": 10.0
+    },
+    "Egg substitutes": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 7.0
+    },
+    "Jicama": {
+        "fridge_metric": "Weeks",
+        "fridge": 3.0
+    },
+    "Goat": {
+        "freeze": 4.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Fish": {
+        "freeze": 6.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 30.0
+    },
+    "Turkey parts": {
+        "freeze": 9.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Venison": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 5.0
+    },
+    "Dates": {
+        "fridge_metric": "Months",
+        "fridge": 12.0
+    },
+    "Butter": {
+        "freeze": 9.0,
+        "fridge_metric": "Months",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Ham": {
+        "freeze": 2.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Yogurt": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Relish": {
+        "fridge_metric": "Months",
+        "fridge": 9.0
+    },
+    "Lettuce": {
+        "fridge_metric": "Days",
+        "fridge": 7.0
+    },
+    "Commercial brand vacuum-packed dinners": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Buttermilk": {
+        "freeze": 3.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Blueberries": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Main dishes or meals": {
+        "fridge_metric": "Days",
+        "fridge": 4.0
+    },
+    "Berries": {
+        "fridge_metric": "Days",
+        "fridge": 6.0
+    },
+    "Raw kabobs with vegetables": {
+        "freeze": 4.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Star fruit": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Kale": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 5.0
+    },
+    "Citrus fruit": {
+        "fridge_metric": "Days",
+        "fridge": 21.0
+    },
+    "Bok choy": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 3.0
+    },
+    "Herbs": {
+        "freeze": 2.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 10.0
+    },
+    "Turnips": {
+        "freeze": 10.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Macadamias": {
+        "freeze": 24.0,
+        "fridge_metric": "Months",
+        "freeze_metric": "Months",
+        "fridge": 12.0
+    },
+    "Olives": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Prickly pear ": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Okra": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 3.0
+    },
+    "Yuca/cassava": {
+        "freeze": 2.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 3.0
+    },
+    "Walnuts": {
+        "freeze": 24.0,
+        "fridge_metric": "Months",
+        "freeze_metric": "Months",
+        "fridge": 12.0
+    },
+    "Peanut butter": {
+        "fridge_metric": "Months",
+        "fridge": 12.0
+    },
+    "Peanuts": {
+        "freeze": 24.0,
+        "fridge_metric": "Months",
+        "freeze_metric": "Months",
+        "fridge": 12.0
+    },
+    "Tapenade": {
+        "fridge_metric": "Months",
+        "fridge": 9.0
+    },
+    "Cottage cheese": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Vegan Cheddar Cheese": {
+        "fridge_metric": "Months",
+        "fridge": 4.0
+    },
+    "Variety meats": {
+        "freeze": 4.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Ricotta": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Turkey bacon": {
+        "freeze": 4.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Eggs": {
+        "fridge_metric": "Weeks",
+        "fridge": 5.0
+    },
+    "Cranberries": {
+        "fridge_metric": "Months",
+        "fridge": 2.0
+    },
+    "Cornish Hens": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Whipped topping": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Luncheon meat or poultry": {
+        "freeze": 2.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Rotisserie chicken": {
+        "freeze": 4.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 4.0
+    },
+    "Baby carrots": {
+        "fridge_metric": "Weeks",
+        "fridge": 4.0
+    },
+    "Rhubarb": {
+        "fridge_metric": "Days",
+        "fridge": 7.0
+    },
+    "Veal": {
+        "freeze": 4.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Margarine": {
+        "freeze": 12.0,
+        "fridge_metric": "Months",
+        "freeze_metric": "Months",
+        "fridge": 6.0
+    },
+    "Mushrooms": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 7.0
+    },
+    "Potatoes": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Crab legs": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 4.0
+    },
+    "Lamb": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 5.0
+    },
+    "Canadian bacon": {
+        "fridge_metric": "Days",
+        "fridge": 80.0
+    },
+    "Ground turkey or chicken": {
+        "freeze": 4.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Swiss chard": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Duckling": {
+        "freeze": 6.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Greens": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 4.0
+    },
+    "Goose": {
+        "freeze": 6.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Squid": {
+        "freeze": 18.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 3.0
+    },
+    "Coconuts": {
+        "fridge_metric": "Weeks",
+        "fridge": 3.0
+    },
+    "Cabbage": {
+        "freeze": 12.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Pecans": {
+        "freeze": 24.0,
+        "fridge_metric": "Months",
+        "freeze_metric": "Months",
+        "fridge": 9.0
+    },
+    "Celery": {
+        "freeze": 12.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Radishes": {
+        "fridge_metric": "Days",
+        "fridge": 14.0
+    },
+    "Pumpkins": {
+        "fridge_metric": "Months",
+        "fridge": 5.0
+    },
+    "Chicken parts": {
+        "freeze": 9.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Grapes": {
+        "fridge_metric": "Weeks",
+        "fridge": 1.0
+    },
+    "Salami ": {
+        "freeze": 2.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Turkey ": {
+        "freeze": 2.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Shucked clams, mussels, and oysters": {
+        "freeze": 4.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 10.0
+    },
+    "Hot peppers": {
+        "fridge_metric": "Weeks",
+        "fridge": 1.0
+    },
+    "Watermelon": {
+        "fridge_metric": "Days",
+        "fridge": 4.0
+    },
+    "Lean fish": {
+        "freeze": 8.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Cherries": {
+        "fridge_metric": "Days",
+        "fridge": 3.0
+    },
+    "Pate": {
+        "fridge_metric": "Days",
+        "fridge": 2.0
+    },
+    "Beans and peas": {
+        "freeze": 8.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 5.0
+    },
+    "Coffee creamer": {
+        "fridge_metric": "Weeks",
+        "fridge": 3.0
+    },
+    "Cucumbers": {
+        "fridge_metric": "Days",
+        "fridge": 6.0
+    },
+    "Eggplant": {
+        "freeze": 8.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 7.0
+    },
+    "Honeydew": {
+        "fridge_metric": "Days",
+        "fridge": 4.0
+    },
+    "Pomegranate": {
+        "fridge_metric": "Months",
+        "fridge": 3.0
+    },
+    "Carrots, parsnips": {
+        "freeze": 12.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 3.0
+    },
+    "Corn on the cob": {
+        "freeze": 8.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Stuffed, raw pork chops": {
+        "freeze": 9.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Onions": {
+        "freeze": 12.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 1.0
+    },
+    "Cream": {
+        "freeze": 4.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 1.0
+    },
+    "Fresh clams, mussels, oysters": {
+        "fridge_metric": "Days",
+        "fridge": 10.0
+    },
+    "Taro": {
+        "fridge_metric": "Days",
+        "fridge": 3.0
+    },
+    "Kimchi": {
+        "fridge_metric": "Months",
+        "fridge": 12.0
+    },
+    "Herring": {
+        "fridge_metric": "Months",
+        "fridge": 6.0
+    },
+    "Cheese": {
+        "freeze": 6.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Garlic": {
+        "freeze": 1.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 14.0
+    },
+    "Bamboo shoots": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Squash": {
+        "freeze": 12.0,
+        "fridge_metric": "Months",
+        "freeze_metric": "Months",
+        "fridge": 3.0
+    },
+    "Capon": {
+        "freeze": 12.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Cashews": {
+        "freeze": 12.0,
+        "fridge_metric": "Months",
+        "freeze_metric": "Months",
+        "fridge": 6.0
+    },
+    "Whipped cream": {
+        "fridge_metric": "Weeks",
+        "fridge": 4.0
+    },
+    "Almond oil": {
+        "fridge_metric": "Years",
+        "fridge": 2.0
+    },
+    "Sausage": {
+        "freeze": 2.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 3.0
+    },
+    "Quail": {
+        "freeze": 6.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Cream cheese": {
+        "fridge_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Tortillas": {
+        "fridge_metric": "Days",
+        "fridge": 90.0
+    },
+    "Papaya, mango, feijoa, passionfruit, casaha melon": {
+        "fridge_metric": "Weeks",
+        "fridge": 1.0
+    },
+    "Pitaya/dragon fruit": {
+        "fridge_metric": "Weeks",
+        "fridge": 3.0
+    },
+    "Asparagus": {
+        "freeze": 5.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 4.0
+    },
+    "Leeks": {
+        "freeze": 12.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Miso": {
+        "fridge_metric": "Years",
+        "fridge": 1.0
+    },
+    "Beef": {
+        "freeze": 4.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Months",
+        "fridge": 2.0
+    },
+    "Flaxseed": {
+        "fridge_metric": "Months",
+        "fridge": 12.0
+    },
+    "Fresh whole lobster": {
+        "freeze": 4.0,
+        "fridge_metric": "Days",
+        "freeze_metric": "Weeks",
+        "fridge": 2.0
+    },
+    "Tofu": {
+        "freeze": 5.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 1.0
+    },
+    "Ginger root": {
+        "freeze": 6.0,
+        "fridge_metric": "Weeks",
+        "freeze_metric": "Months",
+        "fridge": 3.0
+    }
+}

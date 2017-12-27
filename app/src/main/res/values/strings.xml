@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Expired!</string>
+    <string name="addButtonName">Add Item</string>
+    <string name="actionSearch">Search for an item.</string>
+    <string name="itemName">Item</string>
+    <string name="expirationDate">Expires on</string>
+    <string name="storageType">Storage Type</string>
+    <string name="purchaseDate">Purchased on</string>
+    <string-array name="storageTypes">
+        <item>Fridge</item>
+        <item>Freezer</item>
+        <item>Misc</item>
+    </string-array>
+</resources>
