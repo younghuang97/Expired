@@ -126,18 +126,22 @@ public class AddActivity extends AppCompatActivity {
         }
         // if no expiration date, search db for default, if not in db, display an error message
         else if (expDate == null || expDate.isEmpty()) {
-            // check db
-                // do this if it passes
-                // else do this if it fails
-                item = new Item(itemName, storageType);
+            item = new Item(itemName, storageType);
+            if (!Fridge.getFridge().addItem(item)) {
+                Toast toast = Toast.makeText(this, "Please enter an expiration date.", Toast.LENGTH_SHORT);
+                toast.show();
+            } else {
+                Fridge.getFridge().updateFridge(AddActivity.this);
+                Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + expDate, Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+                finish();
+            }
+
         }
         // if all the fields are filled out, make an item with the fields
         else {
             item = new Item(itemName, purDate2, expDate2, storageType);
-        }
-        // if able to create a valid item, add it to the fridge, otherwise display an error message
-        if (item != null)
-        {
             if (!Fridge.getFridge().addItem(item)) {
                 Toast toast = Toast.makeText(this, itemName + " has failed to be added.", Toast.LENGTH_SHORT);
                 toast.show();
@@ -148,7 +152,6 @@ public class AddActivity extends AppCompatActivity {
                 toast.show();
                 finish();
             }
-            Fridge.getFridge().printDatePurchased(5);
         }
     }
 }

@@ -16,10 +16,10 @@ public class Item
 	private String datePurchased;
 	private String dateExpired;
 	private String storageType;
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
 
 	// Constructors
 	public Item(String name, String storageType) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         Calendar cal = Calendar.getInstance();
 		this.name = name;
 		this.datePurchased = sdf.format(cal.getTime());
@@ -27,15 +27,15 @@ public class Item
 		this.storageType = storageType;
 	}
 
+	/*
 	public Item(String name, String dateExpired, String storageType) {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		Calendar cal = Calendar.getInstance();
 		this.name = name;
 		this.datePurchased = sdf.format(cal.getTime());
 		this.dateExpired = dateExpired;
 		this.storageType = storageType;
 	}
-
+	*/
 	public Item(String name, String datePurchased, String dateExpired, String storageType) {
         this.name = name;
         this.datePurchased = datePurchased;

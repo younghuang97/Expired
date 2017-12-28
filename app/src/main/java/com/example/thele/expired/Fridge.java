@@ -9,16 +9,15 @@ package com.example.thele.expired;
 import android.content.Context;
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.File;
@@ -43,7 +42,6 @@ public class Fridge
 
     /*
     Adds an item to both TreeMaps
-    TODO: Change years to be last 2 digits
      */
     boolean addItem(Item item)
     {
@@ -57,7 +55,7 @@ public class Fridge
         if (strDayExp.length() == 0)
         {
             strDayExp = calcExp(itemName, type, strDayPur);
-            if (strDayExp == "FAIL")
+            if (strDayExp == null)
             {
                 return false;
             }
@@ -90,6 +88,36 @@ public class Fridge
             purFridge.put(strDayPur, foundMap2);
         }
         return true;
+    }
+
+    String calcExp(String item_name, String type, String dayPurchased)
+    {
+        int numOfDays = 0;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
+        Calendar cal = Calendar.getInstance();
+        try {
+            cal.setTime(sdf.parse(dayPurchased));
+        }
+        catch(ParseException e)
+        {
+            e.printStackTrace();
+        }
+        PairOfDates pair = expDates.get(item_name);
+
+        if (pair == null) {
+            return null;
+        }
+
+        if (type.equals("Fridge"))
+        {
+            numOfDays = pair.getFridge();
+        }
+        else if (type.equals("Freezer"))
+        {
+            numOfDays = pair.getFreezer();
+        }
+        cal.add(Calendar.DATE, numOfDays);
+        return sdf.format(cal.getTime());
     }
 
     /*
@@ -261,41 +289,6 @@ public class Fridge
         }
     }
 
-    String calcExp(String item_name, String type, String dayPurchased)
-    {
-        int numOfDays = 0;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyMMdd");
-        Calendar cal = Calendar.getInstance();
-        try {
-            cal.setTime(sdf.parse(dayPurchased));
-        }
-        catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-        PairOfDates pair;
-        try
-        {
-            pair = expDates.get(item_name.toLowerCase());
-        }
-        catch(NullPointerException e)
-        {
-            Log.e(TAG, "Database doesn't have expiration dates for " +
-                    item_name + ". Please enter an expiration date manually.");
-            return "FAIL";
-        }
-        if (type.equals("Fridge"))
-        {
-            numOfDays = pair.getFridge();
-        }
-        else if (type.equals("Freezer"))
-        {
-            numOfDays = pair.getFreezer();
-        }
-        cal.add(Calendar.DATE, numOfDays);
-        return sdf.format(cal.getTime());
-    }
-
     // on program startup, load the expiration dates, so user has quick access to them
     void readDatabase(Context myContext)
     {
@@ -309,14 +302,9 @@ public class Fridge
                 scanner = new Scanner(file);
                 // reads from file and fills up the expired hashmap
                 while (scanner.hasNext()) {
-
-                    String name = scanner.nextLine();
+                    String name = scanner.nextLine().trim();
                     int fridgeDate = scanner.nextInt();
                     int freezerDate = scanner.nextInt();
-
-                    /*String name = scanner.next("\t");
-                    int fridgeDate = Integer.parseInt(scanner.next("\t"));
-                    int freezerDate = Integer.parseInt(scanner.next("\n"));*/
                     expDates.put(name, new PairOfDates(fridgeDate, freezerDate));
                 }
                 scanner.close();
