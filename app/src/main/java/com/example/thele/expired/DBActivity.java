@@ -44,7 +44,7 @@ public class DBActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        myDataset = Fridge.getFridge().returnDatebase();
+        myDataset = Fridge.getFridge().returnDatabase();
 
         mAdapter = new DBAdapter(myDataset, DBActivity.this);
         mRecyclerView.setAdapter(mAdapter);
@@ -91,7 +91,7 @@ public class DBActivity extends AppCompatActivity {
     public void onResume()
     {
         super.onResume();
-        List<PairOfDates> myDataset = Fridge.getFridge().returnDatebase();
+        List<PairOfDates> myDataset = Fridge.getFridge().returnDatabase();
         mAdapter = new DBAdapter(myDataset, DBActivity.this);
         mRecyclerView.setAdapter(mAdapter);
     }

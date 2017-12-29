@@ -28,7 +28,7 @@ public class Fridge
     private static final String TAG = "Fridge";
     private Map<String, TreeMap<String, Item>> expFridge = new TreeMap<>();
     private Map<String, TreeMap<String, Item>> purFridge = new TreeMap<>();
-    private Map<String, PairOfDates> expDates = new HashMap<>();
+    private Map<String, PairOfDates> expDates = new TreeMap<>();
     private static Fridge fridge = null;
 
     private Fridge() { }
@@ -125,13 +125,11 @@ public class Fridge
     Adds a PairOfDates to expDates HashMap
     TODO: If an expdate already exists, then it automatically replaces it, ask user for confirmation later
      */
-    void addExpDate(String name, PairOfDates pair)
-    {
-        expDates.put(name, pair);
-    }
+    void addExpDate(String name, PairOfDates pair) { expDates.put(name, pair); }
 
     /*
     Given a path to the JSON file, parses the data and writes it to the hashmaps
+    TODO: Some duplicate names, need to get the subnames also
      */
     void addExpDatesFromJSON(Context myContext)  {
         try {
@@ -198,7 +196,7 @@ public class Fridge
      */
     void removeExpDate(String name)
     {
-        expDates.remove(name);
+        if (expDates.remove(name) == null) Log.d(TAG, "DAFAQ");
     }
 
     /*
@@ -256,7 +254,7 @@ public class Fridge
     /*
     Returns all stored items in order of earliest nearest expiration date
      */
-    List<PairOfDates> returnDatebase()
+    List<PairOfDates> returnDatabase()
     {
         List<PairOfDates> list = new ArrayList<>();
         for (PairOfDates date : expDates.values())
@@ -306,7 +304,6 @@ public class Fridge
     void readDatabase(Context myContext)
     {
         Scanner scanner;
-        // TODO: path needs to be changed later
         File internalStorageDir = myContext.getFilesDir();
         File file = new File(internalStorageDir, "database.txt");
         // open file
@@ -348,7 +345,6 @@ public class Fridge
     */
     void writeDatabase(Context myContext)
     {
-        // TODO: path needs to be changed later
         File internalStorageDir = myContext.getFilesDir();
         File file = new File(internalStorageDir, "database.txt");
         FileWriter fWriter;
@@ -375,7 +371,6 @@ public class Fridge
     void readList(Context myContext)
     {
         Scanner scanner;
-        // TODO: path needs to be changed later
         File internalStorageDir = myContext.getFilesDir();
         File file = new File(internalStorageDir, "fridge.txt");
         // open file
@@ -385,9 +380,9 @@ public class Fridge
             // reads from file and fills up expFridge
             while(scanner.hasNext())
             {
-                String name = scanner.next();
-                String datePur = scanner.next();
-                String dateExp = scanner.next();
+                String name = scanner.next("\t");
+                String datePur = scanner.next("\t");
+                String dateExp = scanner.next("\t");
                 String typeStorage = scanner.next();
                 Item item = new Item(name, datePur, dateExp, typeStorage);
                 addItem(item);
@@ -414,7 +409,6 @@ public class Fridge
     // called anytime a change is made to the database of items to solidify changes
     void updateFridge(Context myContext)
     {
-        // TODO: path needs to be changed later
         File internalStorageDir = myContext.getFilesDir();
         File file = new File(internalStorageDir, "fridge.txt");
         FileWriter fWriter;

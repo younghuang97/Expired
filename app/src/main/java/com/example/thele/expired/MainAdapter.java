@@ -60,22 +60,23 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>
     // TODO: Sort by purDate/expDate choice later
     public void onBindViewHolder(final ViewHolder holder, int position)
     {
-            final Item item = mDataset.get(position);
+        final Item item = mDataset.get(position);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
                 View mView = LayoutInflater.from(mContext).inflate(R.layout.activity_edit_item, null);
                 final EditText itemName = (EditText) mView.findViewById(R.id.etName);
-                final EditText purDate = (EditText) mView.findViewById(R.id.etPurchaseDate);
-                final EditText expDate = (EditText) mView.findViewById(R.id.etExpirationDate);
+                final EditText purDate = (EditText) mView.findViewById(R.id.etFridgeDate);
+                final EditText expDate = (EditText) mView.findViewById(R.id.etFreezerDate);
                 final Spinner storageType = (Spinner) mView.findViewById(R.id.storageTypeSpinner);
                 // sets a dropdown menu of certain options when editing storage type
                 String[] storageTypes = mContext.getResources().getStringArray(R.array.storageTypes);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_list_item_1, storageTypes);
                 storageType.setAdapter(adapter);
-                Button editBtn = (Button) mView.findViewById(R.id.editbutton);
-                Button deleteBtn = (Button) mView.findViewById(R.id.deletebutton);
+                Button editBtn = (Button) mView.findViewById(R.id.editButton);
+                Button deleteBtn = (Button) mView.findViewById(R.id.deleteButton);
 
                 itemName.setText(holder.nameView.getText().toString().trim());
                 purDate.setText(holder.purDateView.getText().toString().trim());
@@ -98,12 +99,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>
                 final AlertDialog dialog = mBuilder.create();
                 dialog.show();
 
+                final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+
                 // opens a date picker
                 purDate.setOnTouchListener(new View.OnTouchListener() {
                     @Override
                     public boolean onTouch(View view, MotionEvent motionEvent) {
                         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                            final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                             Calendar cal = Calendar.getInstance();
                             try {
                                 cal.setTime(sdf.parse(purDate.getText().toString().trim()));
@@ -139,7 +141,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>
                     @Override
                     public boolean onTouch(View view, MotionEvent motionEvent) {
                         if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                            final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                             Calendar cal = Calendar.getInstance();
                             try {
                                 cal.setTime(sdf.parse(expDate.getText().toString().trim()));
@@ -179,54 +180,53 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>
                         String sType = storageType.getSelectedItem().toString().trim();
 
                         // checks for empty fields
-                        String emptyStringMessage = "The following fields are empty: ";
-                        Toast emptyToast = Toast.makeText(mContext, emptyStringMessage, Toast.LENGTH_LONG);
-                        boolean empty = false;
+                        String missingFieldsMessage = "The following fields are empty: ";
+                        Toast missingFieldsToast = Toast.makeText(mContext, missingFieldsMessage, Toast.LENGTH_LONG);
+                        boolean empty = true;
                         boolean firstEmpty = true; // used to track when to add a comma
                         if (name.isEmpty())
                         {
                             firstEmpty = false;
-                            emptyStringMessage += "Name";
-                            emptyToast.setText(emptyStringMessage);
-                            empty = true;
+                            missingFieldsMessage += "Name";
+                            missingFieldsToast.setText(missingFieldsMessage);
+                            empty = false;
                         }
                         if (pDate.isEmpty())
                         {
                             if (!firstEmpty)
                             {
-                                emptyStringMessage += ", Purchase Date";
+                                missingFieldsMessage += ", Purchase Date";
                             }
                             else
                             {
-                                emptyStringMessage += "Purchase Date";
+                                missingFieldsMessage += "Purchase Date";
                                 firstEmpty = false;
                             }
-                            emptyToast.setText(emptyStringMessage);
-                            empty = true;
+                            missingFieldsToast.setText(missingFieldsMessage);
+                            empty = false;
                         }
                         if (eDate.isEmpty())
                         {
                             if (!firstEmpty)
                             {
-                                emptyStringMessage += ", Expiration Date";
+                                missingFieldsMessage += ", Expiration Date";
                             }
                             else
                             {
-                                emptyStringMessage += "Expiration Date";
+                                missingFieldsMessage += "Expiration Date";
                             }
-                            emptyToast.setText(emptyStringMessage);
-                            empty = true;
+                            missingFieldsToast.setText(missingFieldsMessage);
+                            empty = false;
                         }
 
                         // for proper grammar
-                        emptyStringMessage += '.';
-                        emptyToast.setText(emptyStringMessage);
+                        missingFieldsMessage += '.';
+                        missingFieldsToast.setText(missingFieldsMessage);
 
-                        if (empty)
+                        if (!empty)
                         {
-                            emptyToast.show();
+                            missingFieldsToast.show();
                         }
-
                         else
                         {
                             holder.nameView.setText(name);
@@ -241,7 +241,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>
                             Fridge.getFridge().addItem(item);
                             Fridge.getFridge().updateFridge(mContext);
                         }
-                        // check for valid storage types.)
 
                         dialog.dismiss();
                     }
@@ -261,9 +260,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>
                 });
             }
         });
-            holder.nameView.setText(item.getName());
-            holder.expDateView.setText(Fridge.getFridge().printPrettyDate(item.getDateExpired()));
-            holder.purDateView.setText(Fridge.getFridge().printPrettyDate(item.getDatePurchased()));
+
+        holder.nameView.setText(item.getName());
+        holder.expDateView.setText(Fridge.getFridge().printPrettyDate(item.getDateExpired()));
+        holder.purDateView.setText(Fridge.getFridge().printPrettyDate(item.getDatePurchased()));
     }
 
     public int getItemCount()

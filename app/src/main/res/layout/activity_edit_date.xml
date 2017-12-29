@@ -30,11 +30,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/purchaseDate"
-            android:inputType="none"
-            android:maxLines="1"
-            android:focusable="false"
-            android:focusableInTouchMode="false" />
+            android:hint="Fridge(Days)"
+            android:inputType="numberDecimal"
+            android:maxLines="1" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -47,20 +45,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="@string/expirationDate"
-            android:inputType="none"
-            android:maxLines="1"
-            android:focusable="false"
-            android:focusableInTouchMode="false" />
+            android:hint="Freezer(Days)"
+            android:inputType="numberDecimal"
+            android:maxLines="1" />
 
     </android.support.design.widget.TextInputLayout>
-
-    <Spinner
-        android:id="@+id/storageTypeSpinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dialog"
-        android:prompt="@string/storageType"/>
 
     <Button
         android:id="@+id/editButton"
