@@ -66,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /*
-    On add button press, goes to AddActivity
+    On add button press, goes to AddItemActivity
      */
-    public void goToAddActivity(View view) {
-        Intent intent = new Intent(this, AddActivity.class);
+    public void goToAddItemActivity(View view) {
+        Intent intent = new Intent(this, AddItemActivity.class);
         startActivity(intent);
     }
 

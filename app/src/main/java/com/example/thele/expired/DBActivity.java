@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import java.util.List;
 
@@ -51,6 +52,14 @@ public class DBActivity extends AppCompatActivity {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 mLayoutManager.getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
+    }
+
+    /*
+    On add button press, goes to AddItemActivity
+     */
+    public void goToAddDateActivity(View view) {
+        Intent intent = new Intent(this, AddDateActivity.class);
+        startActivity(intent);
     }
 
     @Override

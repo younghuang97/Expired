@@ -17,8 +17,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AddActivity extends AppCompatActivity {
-    private static final String TAG = "AddActivity";
+public class AddItemActivity extends AppCompatActivity {
+    private static final String TAG = "AddItemActivity";
     Button button;
     EditText nameField;
     EditText expDateField;
@@ -29,12 +29,12 @@ public class AddActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
+        setContentView(R.layout.activity_add_item);
 
         final SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
 
         // get elements
-        button = (Button) findViewById(R.id.addItemButton);
+        button = (Button) findViewById(R.id.addDatesButton);
         nameField = (EditText) findViewById(R.id.nameField);
         expDateField = (EditText) findViewById(R.id.expirationDateField);
         purDateField = (EditText) findViewById(R.id.purchaseDateField);
@@ -62,7 +62,7 @@ public class AddActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    DatePickerDialog dpd = new DatePickerDialog(AddActivity.this,
+                    DatePickerDialog dpd = new DatePickerDialog(AddItemActivity.this,
                             new DatePickerDialog.OnDateSetListener() {
 
                                 @Override
@@ -90,7 +90,7 @@ public class AddActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    DatePickerDialog dpd = new DatePickerDialog(AddActivity.this,
+                    DatePickerDialog dpd = new DatePickerDialog(AddItemActivity.this,
                             new DatePickerDialog.OnDateSetListener() {
 
                                 @Override
@@ -122,6 +122,7 @@ public class AddActivity extends AppCompatActivity {
         if (itemName == null || itemName.isEmpty()) {
             //Display a toast or something "Please enter item name."
             Toast toast = Toast.makeText(this, "Please enter item name.", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }
         // if no expiration date, search db for default, if not in db, display an error message
@@ -129,9 +130,10 @@ public class AddActivity extends AppCompatActivity {
             item = new Item(itemName, storageType);
             if (!Fridge.getFridge().addItem(item)) {
                 Toast toast = Toast.makeText(this, "Please enter an expiration date.", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
             } else {
-                Fridge.getFridge().updateFridge(AddActivity.this);
+                Fridge.getFridge().updateFridge(AddItemActivity.this);
                 Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + expDate, Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
@@ -146,7 +148,7 @@ public class AddActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, itemName + " has failed to be added.", Toast.LENGTH_SHORT);
                 toast.show();
             } else {
-                Fridge.getFridge().updateFridge(AddActivity.this);
+                Fridge.getFridge().updateFridge(AddItemActivity.this);
                 Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + expDate, Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();

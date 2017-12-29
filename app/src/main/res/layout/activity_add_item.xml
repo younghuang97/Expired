@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.thele.expired.AddActivity"
+    tools:context="com.example.thele.expired.AddItemActivity"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -69,7 +69,7 @@
         android:prompt="@string/storageType"/>
 
     <Button
-        android:id="@+id/addItemButton"
+        android:id="@+id/addDatesButton"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"

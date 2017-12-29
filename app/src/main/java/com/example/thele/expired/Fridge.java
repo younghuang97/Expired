@@ -125,9 +125,9 @@ public class Fridge
     Adds a PairOfDates to expDates HashMap
     TODO: If an expdate already exists, then it automatically replaces it, ask user for confirmation later
      */
-    void addExpDate(PairOfDates date, String name)
+    void addExpDate(String name, PairOfDates pair)
     {
-        expDates.put(name, date);
+        expDates.put(name, pair);
     }
 
     /*
@@ -165,7 +165,7 @@ public class Fridge
 
                     }
                     PairOfDates dates = new PairOfDates(key, fridge, freeze);
-                    addExpDate(dates, key);
+                    addExpDate(key, dates);
                 }
             }
         }

@@ -9,14 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:theme="@style/AppTheme">
 
-        <activity android:name="com.example.thele.expired.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.thele.expired.AddActivity" />
-        <activity android:name="com.example.thele.expired.DBActivity" />
+        <activity android:name=".AddItemActivity" />
+        <activity android:name=".DBActivity" />
+        <activity android:name=".AddDateActivity" />
     </application>
 
 </manifest>
