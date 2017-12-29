@@ -116,7 +116,7 @@ public class AddItemActivity extends AppCompatActivity {
         String expDate2 = Fridge.getFridge().printDate(expDate); // used to create the item
         String purDate2 = Fridge.getFridge().printDate(purDate); // used to create the item
 
-        Item item = null;
+        Item item;
 
         // no name
         if (itemName == null || itemName.isEmpty()) {
@@ -133,7 +133,7 @@ public class AddItemActivity extends AppCompatActivity {
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
             } else {
-                Fridge.getFridge().updateFridge(AddItemActivity.this);
+                Fridge.getFridge().updateFridge(this);
                 Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + expDate, Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
@@ -148,7 +148,7 @@ public class AddItemActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, itemName + " has failed to be added.", Toast.LENGTH_SHORT);
                 toast.show();
             } else {
-                Fridge.getFridge().updateFridge(AddItemActivity.this);
+                Fridge.getFridge().updateFridge(this);
                 Toast toast = Toast.makeText(this, itemName + " has been added. Set to expire on " + expDate, Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();

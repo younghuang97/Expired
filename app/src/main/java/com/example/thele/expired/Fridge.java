@@ -8,7 +8,6 @@ package com.example.thele.expired;
 
 import android.content.Context;
 import android.util.Log;
-import android.util.Pair;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -380,10 +379,10 @@ public class Fridge
             // reads from file and fills up expFridge
             while(scanner.hasNext())
             {
-                String name = scanner.next("\t");
-                String datePur = scanner.next("\t");
-                String dateExp = scanner.next("\t");
-                String typeStorage = scanner.next();
+                String name = scanner.nextLine();
+                String datePur = scanner.nextLine();
+                String dateExp = scanner.nextLine();
+                String typeStorage = scanner.nextLine();
                 Item item = new Item(name, datePur, dateExp, typeStorage);
                 addItem(item);
             }
@@ -421,8 +420,8 @@ public class Fridge
                 // iterates through items
                 for (Item item : map.values())
                 {
-                    fWriter.write(item.getName() + '\t' + item.getDatePurchased() + '\t' +
-                            item.getDateExpired() + '\t' + item.getStorageType() + '\n');
+                    fWriter.write(item.getName() + '\n' + item.getDatePurchased() + '\n' +
+                            item.getDateExpired() + '\n' + item.getStorageType() + '\n');
                 }
             }
             fWriter.close();
