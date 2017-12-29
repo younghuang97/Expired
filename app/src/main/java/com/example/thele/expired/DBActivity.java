@@ -9,68 +9,48 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Created by younghuang97 on 12/27/17.
+ */
 
-    private static final String TAG = "MainActivity";
+public class DBActivity extends AppCompatActivity {
+    private static final String TAG = "DBActivity";
     private Toolbar myToolbar;
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private LinearLayoutManager mLayoutManager;
-    private List<Item> myDataset;
+    private List<PairOfDates> myDataset;
     String fontPath = "fonts/indie_flower.ttf";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_db);
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
         // sets up custom fonts for textviews
+
         Helper.setCustomFont(this, R.id.itemName, fontPath);
-        Helper.setCustomFont(this, R.id.purchaseDate, fontPath);
-        Helper.setCustomFont(this, R.id.expirationDate, fontPath);
+        Helper.setCustomFont(this, R.id.fridgeDate, fontPath);
+        Helper.setCustomFont(this, R.id.freezerDate, fontPath);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        Fridge.getFridge().readDatabase(this);
-        Fridge.getFridge().readList(this);
+        myDataset = Fridge.getFridge().returnDatebase();
 
-        //Fridge.getFridge().printDatabase();
-
-        // initialize items for testing
-        /*Item item = new Item("Carrot", "Fridge");
-        Item item2 = new Item("beef", "Freezer");
-
-        Fridge.getFridge().addItem(item);
-        Fridge.getFridge().addItem(item2);
-        */
-        //Fridge.getFridge().writeDatabase(this);
-        //Fridge.getFridge().printDatePurchased(3);
-
-        myDataset = Fridge.getFridge().returnDateExpired();
-
-        mAdapter = new MainAdapter(myDataset, MainActivity.this);
+        mAdapter = new DBAdapter(myDataset, DBActivity.this);
         mRecyclerView.setAdapter(mAdapter);
         // lines between items
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
                 mLayoutManager.getOrientation());
         mRecyclerView.addItemDecoration(dividerItemDecoration);
-    }
-
-    /*
-    On add button press, goes to AddActivity
-     */
-    public void goToAddActivity(View view) {
-        Intent intent = new Intent(this, AddActivity.class);
-        startActivity(intent);
     }
 
     @Override
@@ -102,8 +82,8 @@ public class MainActivity extends AppCompatActivity {
     public void onResume()
     {
         super.onResume();
-        List<Item> myDataset = Fridge.getFridge().returnDateExpired();
-        mAdapter = new MainAdapter(myDataset, MainActivity.this);
+        List<PairOfDates> myDataset = Fridge.getFridge().returnDatebase();
+        mAdapter = new DBAdapter(myDataset, DBActivity.this);
         mRecyclerView.setAdapter(mAdapter);
     }
 }

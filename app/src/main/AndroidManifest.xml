@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
         <activity android:name="com.example.thele.expired.AddActivity" />
+        <activity android:name="com.example.thele.expired.DBActivity" />
     </application>
 
 </manifest>

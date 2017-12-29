@@ -8,6 +8,7 @@ package com.example.thele.expired;
 
 import android.content.Context;
 import android.util.Log;
+import android.util.Pair;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -163,7 +164,7 @@ public class Fridge
                     catch (JSONException e) {
 
                     }
-                    PairOfDates dates = new PairOfDates(fridge, freeze);
+                    PairOfDates dates = new PairOfDates(key, fridge, freeze);
                     addExpDate(dates, key);
                 }
             }
@@ -234,8 +235,7 @@ public class Fridge
     }
 
     /*
-    Prints an amount number of item dates starting with the item with the
-    nearest expiration date
+    Returns all stored items in order of earliest nearest expiration date
      */
     List<Item> returnDateExpired()
     {
@@ -249,6 +249,19 @@ public class Fridge
             {
                 list.add(item);
             }
+        }
+        return list;
+    }
+
+    /*
+    Returns all stored items in order of earliest nearest expiration date
+     */
+    List<PairOfDates> returnDatebase()
+    {
+        List<PairOfDates> list = new ArrayList<>();
+        for (PairOfDates date : expDates.values())
+        {
+            list.add(date);
         }
         return list;
     }
@@ -305,7 +318,7 @@ public class Fridge
                     String name = scanner.nextLine().trim();
                     int fridgeDate = scanner.nextInt();
                     int freezerDate = scanner.nextInt();
-                    expDates.put(name, new PairOfDates(fridgeDate, freezerDate));
+                    expDates.put(name, new PairOfDates(name, fridgeDate, freezerDate));
                 }
                 scanner.close();
             }

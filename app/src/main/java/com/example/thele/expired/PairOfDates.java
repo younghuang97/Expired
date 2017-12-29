@@ -1,15 +1,18 @@
 package com.example.thele.expired;
 public class PairOfDates
 {
-    private int fridgedate;
-    private int freezerdate;
-    public PairOfDates(int fridge, int freezer)
+    private String itemName;
+    private int fridgeDate;
+    private int freezerDate;
+    public PairOfDates(String name, int fridge, int freezer)
     {
         super();
-        this.fridgedate = fridge;
-        this.freezerdate = freezer;
+        this.itemName = name;
+        this.fridgeDate = fridge;
+        this.freezerDate = freezer;
     }
 
-    public int getFridge() { return fridgedate; };
-    public int getFreezer() { return freezerdate; };
+    public String getName() { return itemName; };
+    public int getFridge() { return fridgeDate; };
+    public int getFreezer() { return freezerDate; };
 }

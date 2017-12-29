@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.thele.expired.MainActivity">
+    tools:context="com.example.thele.expired.DBActivity">
 
     <include
         android:id="@+id/toolbar"
@@ -44,28 +44,28 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/purchaseDate"
+        android:id="@+id/fridgeDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/itemName"
-        android:layout_marginLeft="95dp"
+        android:layout_marginLeft="160dp"
         android:layout_marginStart="25dp"
         android:layout_toRightOf="@id/itemName"
         android:layout_toEndOf="@id/itemName"
-        android:text="@string/purchaseDate"
+        android:text="Fridge"
         android:textSize="@dimen/font_size"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/expirationDate"
+        android:id="@+id/freezerDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@id/purchaseDate"
+        android:layout_alignTop="@id/fridgeDate"
         android:layout_marginLeft="25dp"
         android:layout_marginStart="25dp"
-        android:layout_toRightOf="@id/purchaseDate"
-        android:layout_toEndOf="@id/purchaseDate"
-        android:text="@string/expirationDate"
+        android:layout_toRightOf="@id/fridgeDate"
+        android:layout_toEndOf="@id/fridgeDate"
+        android:text="Freezer"
         android:textSize="@dimen/font_size"
         android:textStyle="bold" />
 

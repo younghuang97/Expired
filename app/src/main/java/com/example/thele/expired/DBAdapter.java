@@ -26,49 +26,50 @@ import java.util.List;
  * Created by thele on 8/17/2017.
  */
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
+public class DBAdapter extends RecyclerView.Adapter<DBAdapter.ViewHolder>
 {
-    private String TAG = "MyAdapter";
-    private List<Item> mDataset;
+    private String TAG = "DBAdapter";
+    private List<PairOfDates> mDataset;
     private Context mContext;
 
     public static class ViewHolder extends RecyclerView.ViewHolder
     {
         public TextView nameView;
-        public TextView expDateView;
-        public TextView purDateView;
+        public TextView fridgeDateView;
+        public TextView freezerDateView;
         public ViewHolder(View itemView) {
             super(itemView);
             nameView = (TextView) itemView.findViewById(R.id.itemName);
-            expDateView = (TextView) itemView.findViewById(R.id.expirationDate);
-            purDateView = (TextView) itemView.findViewById(R.id.purchaseDate);
+            fridgeDateView = (TextView) itemView.findViewById(R.id.fridgeDate);
+            freezerDateView = (TextView) itemView.findViewById(R.id.freezerDate);
         }
     }
 
-    public MyAdapter(List<Item> myDataset, Context context)
+    public DBAdapter(List<PairOfDates> myDataset, Context context)
     {
         mDataset = myDataset;
         mContext = context;
     }
 
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
+    public DBAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.itemview, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view_db, parent, false);
         return new ViewHolder(v);
     }
 
     // TODO: Sort by purDate/expDate choice later
     public void onBindViewHolder(final ViewHolder holder, int position)
     {
-            final Item item = mDataset.get(position);
+        final PairOfDates pair = mDataset.get(position);
+        /*
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(mContext);
-                View mView = LayoutInflater.from(mContext).inflate(R.layout.dialog_edititem, null);
+                View mView = LayoutInflater.from(mContext).inflate(R.layout.activity_edit_item, null);
                 final EditText itemName = (EditText) mView.findViewById(R.id.etName);
-                final EditText purDate = (EditText) mView.findViewById(R.id.etPurchaseDate);
                 final EditText expDate = (EditText) mView.findViewById(R.id.etExpirationDate);
+                final EditText purDate = (EditText) mView.findViewById(R.id.etPurchaseDate);
                 final Spinner storageType = (Spinner) mView.findViewById(R.id.storageTypeSpinner);
                 // sets a dropdown menu of certain options when editing storage type
                 String[] storageTypes = mContext.getResources().getStringArray(R.array.storageTypes);
@@ -78,8 +79,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                 Button deleteBtn = (Button) mView.findViewById(R.id.deletebutton);
 
                 itemName.setText(holder.nameView.getText().toString().trim());
-                purDate.setText(holder.purDateView.getText().toString().trim());
-                expDate.setText(holder.expDateView.getText().toString().trim());
+                expDate.setText(holder.fridgeDateView.getText().toString().trim());
+                purDate.setText(holder.freezerDateView.getText().toString().trim());
+
                 final String storeType = item.getStorageType();
                 if (storeType.equals("Fridge"))
                 {
@@ -230,8 +232,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                         else
                         {
                             holder.nameView.setText(name);
-                            holder.expDateView.setText(eDate);
-                            holder.purDateView.setText(pDate);
+                            holder.fridgeDateView.setText(eDate);
+                            holder.freezerDateView.setText(pDate);
                             // removes item, then puts its edited version back in
                             Fridge.getFridge().removeItem(item);
                             item.setName(name);
@@ -261,9 +263,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>
                 });
             }
         });
-            holder.nameView.setText(item.getName());
-            holder.expDateView.setText(Fridge.getFridge().printPrettyDate(item.getDateExpired()));
-            holder.purDateView.setText(Fridge.getFridge().printPrettyDate(item.getDatePurchased()));
+        */
+        holder.nameView.setText(pair.getName());
+        holder.fridgeDateView.setText(String.valueOf(pair.getFridge()));
+        holder.freezerDateView.setText(String.valueOf(pair.getFreezer()));
     }
 
     public int getItemCount()
