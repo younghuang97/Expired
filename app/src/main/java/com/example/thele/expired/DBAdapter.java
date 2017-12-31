@@ -99,12 +99,10 @@ public class DBAdapter extends RecyclerView.Adapter<DBAdapter.ViewHolder>
                         // just freezer date
                         else if (mFridgeDate == null || mFridgeDate.isEmpty()) {
                             try {
-                                mPair = new PairOfDates(mName, 0, parseInt(mFreezerDate));
-                                holder.nameView.setText(mName);
-                                holder.fridgeDateView.setText(mFridgeDate);
-                                holder.freezerDateView.setText(mFreezerDate);
-                                Fridge.getFridge().removeExpDate(pair.getName());
-                                Fridge.getFridge().addExpDate(mName, mPair);
+                                pair.setName(mName);
+                                pair.setFridge(0);
+                                pair.setFreezer(parseInt(mFreezerDate));
+                                notifyItemChanged(holder.getAdapterPosition());
                                 Fridge.getFridge().writeDatabase(mContext);
                             }
                             catch (NumberFormatException e) {
@@ -116,12 +114,10 @@ public class DBAdapter extends RecyclerView.Adapter<DBAdapter.ViewHolder>
                         // just fridge date
                         else if (mFreezerDate == null || mFreezerDate.isEmpty()) {
                             try {
-                                mPair = new PairOfDates(mName, parseInt(mFridgeDate), 0);
-                                holder.nameView.setText(mName);
-                                holder.fridgeDateView.setText(mFridgeDate);
-                                holder.freezerDateView.setText(mFreezerDate);
-                                Fridge.getFridge().removeExpDate(pair.getName());
-                                Fridge.getFridge().addExpDate(mName, mPair);
+                                pair.setName(mName);
+                                pair.setFridge(parseInt(mFridgeDate));
+                                pair.setFreezer(0);
+                                notifyItemChanged(holder.getAdapterPosition());
                                 Fridge.getFridge().writeDatabase(mContext);
                             }
                             catch (NumberFormatException e) {
@@ -133,12 +129,10 @@ public class DBAdapter extends RecyclerView.Adapter<DBAdapter.ViewHolder>
                         // both dates
                         else {
                             try {
-                                mPair = new PairOfDates(mName, parseInt(mFridgeDate), parseInt(mFreezerDate));
-                                holder.nameView.setText(mName);
-                                holder.fridgeDateView.setText(mFridgeDate);
-                                holder.freezerDateView.setText(mFreezerDate);
-                                Fridge.getFridge().removeExpDate(pair.getName());
-                                Fridge.getFridge().addExpDate(mName, mPair);
+                                pair.setName(mName);
+                                pair.setFridge(parseInt(mFridgeDate));
+                                pair.setFreezer(parseInt(mFreezerDate));
+                                notifyItemChanged(holder.getAdapterPosition());
                                 Fridge.getFridge().writeDatabase(mContext);
                             }
                             catch (NumberFormatException e) {

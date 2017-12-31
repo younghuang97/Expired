@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Fridge.getFridge().addItem(item2);
         */
         //Fridge.getFridge().writeDatabase(this);
-        Fridge.getFridge().printDatePurchased(3);
+        //Fridge.getFridge().printDatePurchased(3);
 
         myDataset = Fridge.getFridge().returnDateExpired();
 
