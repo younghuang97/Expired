@@ -161,6 +161,7 @@ public class DBAdapter extends RecyclerView.Adapter<DBAdapter.ViewHolder>
             }
         });
 
+        // sets the text so the user can see all the data
         holder.nameView.setText(pair.getName());
         holder.fridgeDateView.setText(String.valueOf(pair.getFridge()));
         holder.freezerDateView.setText(String.valueOf(pair.getFreezer()));

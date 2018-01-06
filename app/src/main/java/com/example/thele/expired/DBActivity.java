@@ -2,14 +2,17 @@ package com.example.thele.expired;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 
 import java.util.List;
 
@@ -32,6 +35,8 @@ public class DBActivity extends AppCompatActivity {
         setContentView(R.layout.activity_db);
         myToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
+        // makes it so button doesn't get pushed up when focused in on searching items
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         // sets up custom fonts for textviews
 
@@ -65,6 +70,23 @@ public class DBActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+        MenuItem searchItem = menu.findItem(R.id.item_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter = new DBAdapter(Helper.filterPoDs(myDataset, newText), DBActivity.this);
+                mRecyclerView.setAdapter(mAdapter);
+                return true;
+            }
+        });
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -72,12 +94,8 @@ public class DBActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.settings:
-                Intent intent1 = new Intent(this, DBActivity.class);
-                startActivity(intent1);
                 return true;
-            case R.id.search:
-                Intent intent2 = new Intent(this, DBActivity.class);
-                startActivity(intent2);
+            case R.id.item_search:
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -85,7 +103,7 @@ public class DBActivity extends AppCompatActivity {
     }
 
     /*
-    Returning to MainActivity from another Activity refreshes the screen to reflect new data
+    Returning to DBActivity from another Activity refreshes the screen to reflect new data
      */
     @Override
     public void onResume()

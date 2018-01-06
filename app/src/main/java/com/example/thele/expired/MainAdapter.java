@@ -260,22 +260,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder>
         holder.expDateView.setText(Fridge.getFridge().printPrettyDate(item.getDateExpired()));
         holder.purDateView.setText(Fridge.getFridge().printPrettyDate(item.getDatePurchased()));
     }
-/*
-    public void filter(String text) {
-        items.clear();
-        if(text.isEmpty()){
-            items.addAll(itemsCopy);
-        } else{
-            text = text.toLowerCase();
-            for(PhoneBookItem item: itemsCopy){
-                if(item.name.toLowerCase().contains(text) || item.phone.toLowerCase().contains(text)){
-                    items.add(item);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
-*/
+
     public int getItemCount()
     {
         return mDataset.size();
